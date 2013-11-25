@@ -12,20 +12,26 @@ import dao.ObjectsDAO;
 import java.util.List;
 
 
+
+
 /**
  *
  * @author Jan
  */
 public class SearchService {
 
+
+
     private ImagesDAO imagesDAO;
     private ObjectsDAO objectsDAO;
 
     public List<Images> getImagesByObjectName(String name) {
+
         Integer oid;
         oid = objectsDAO.getOIDByName(name);
         if(oid == null)
             return null;
+
         return imagesDAO.getImagesByOID(oid);
     }
 
@@ -35,6 +41,8 @@ public class SearchService {
 
     public void setObjectsDAO(ObjectsDAO objectsDAO) {
         this.objectsDAO = objectsDAO;
+
+
 
     }
 }

@@ -7,6 +7,10 @@
 package dao;
 
 import bean.Images;
+import java.util.List;
+import java.util.Map;
+import javax.sql.DataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -24,6 +28,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class ImagesDAO {
 
 
+
+
     private JdbcTemplate jdbcTemplate;
 
     public void setDataSource(DataSource dataSource) {
@@ -37,6 +43,7 @@ public class ImagesDAO {
         try {
             result = jdbcTemplate.queryForList(query, new Object[] {oid});
             //TODO Get data from result
+
              System.out.println("Get images for object [" + oid +"]");
              
              images = new ArrayList<>();
@@ -58,6 +65,7 @@ public class ImagesDAO {
             System.out.println("Couldn't get images for object [" + oid +"]");
         }
         return images;
+
 
     }
     
