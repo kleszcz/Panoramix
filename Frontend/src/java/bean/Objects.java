@@ -18,6 +18,15 @@ public class Objects {
     private float latitude;   
     private float longitude;  
 
+    public Objects(int oid, int uid, String label, String description, float latitude, float longitude) {
+        this.oid = oid;
+        this.uid = uid;
+        this.label = label;
+        this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public int getOid() {
         return oid;
     }
