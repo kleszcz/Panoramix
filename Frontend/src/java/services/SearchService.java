@@ -9,20 +9,26 @@ package services;
 import bean.Images;
 import dao.ImagesDAO;
 import dao.ObjectsDAO;
+import java.util.List;
 
 /**
  *
  * @author Jan
  */
 public class SearchService {
-    ImagesDAO imagesDAO;
-    ObjectsDAO objectsDAO;
-    
-    int getOIDByObjectName(String name) {
-        return objectsDAO.getOIDByName(name);
-    }
-    
-    Images[] getImagesByOID(int oid) {
+    private ImagesDAO imagesDAO;
+    private ObjectsDAO objectsDAO;
+
+    public List<Images> getImagesByObjectName(String name) {
+        int oid = objectsDAO.getOIDByName(name);
         return imagesDAO.getImagesByOID(oid);
+    }
+
+    public void setImagesDAO(ImagesDAO imagesDAO) {
+        this.imagesDAO = imagesDAO;
+    }
+
+    public void setObjectsDAO(ObjectsDAO objectsDAO) {
+        this.objectsDAO = objectsDAO;
     }
 }
