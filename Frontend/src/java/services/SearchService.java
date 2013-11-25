@@ -11,11 +11,13 @@ import dao.ImagesDAO;
 import dao.ObjectsDAO;
 import java.util.List;
 
+
 /**
  *
  * @author Jan
  */
 public class SearchService {
+
     private ImagesDAO imagesDAO;
     private ObjectsDAO objectsDAO;
 
@@ -33,5 +35,6 @@ public class SearchService {
 
     public void setObjectsDAO(ObjectsDAO objectsDAO) {
         this.objectsDAO = objectsDAO;
+
     }
 }

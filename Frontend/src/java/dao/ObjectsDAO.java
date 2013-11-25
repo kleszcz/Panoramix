@@ -25,10 +25,13 @@ public class ObjectsDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+
     public Integer getOIDByName(String name) {
         //TODO select * from PANORAMIX.Objects where label == name
         Integer oid = null;
         String query = "select oid from PANORAMIX.Objects where label=?";
+
+ 
   
         try {
             oid = (Integer)jdbcTemplate.queryForObject(query, new Object[] {name}, new RowMapper(){
@@ -37,7 +40,9 @@ public class ObjectsDAO {
                         return new Integer(rs.getInt("oid"));
                     }
             });
+
             System.out.println("Get object id [" + name +"] oid = " + oid);
+
         }
         catch(DataAccessException e)
         {

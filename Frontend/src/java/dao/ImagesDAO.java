@@ -7,6 +7,7 @@
 package dao;
 
 import bean.Images;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,13 @@ import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+
 /**
  *
  * @author Jan
  */
 public class ImagesDAO {
+
 
     private JdbcTemplate jdbcTemplate;
 
@@ -55,6 +58,7 @@ public class ImagesDAO {
             System.out.println("Couldn't get images for object [" + oid +"]");
         }
         return images;
+
     }
     
 }
