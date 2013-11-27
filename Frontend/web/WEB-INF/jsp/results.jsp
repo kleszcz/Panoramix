@@ -11,7 +11,9 @@
 <%@page import="bean.Images"%>
 <%@page import="java.awt.Image"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,6 +22,7 @@
     </head>
     <body>
         <h1>Search results for ${searchName}:</h1>
+
         <c:if test="${noResults}">
             <p> Sorry, no results for ${searchName}. </p>
         </c:if>
@@ -33,6 +36,7 @@
             </table>
        </c:if>
         
+
         
     </body>
 </html>
