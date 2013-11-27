@@ -6,7 +6,10 @@
 
 package bean;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,7 +24,11 @@ public class Search {
     }
 
     public void setName(String name) {
-        this.name = name;
+        try {
+            this.name = new String(name.getBytes("iso-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
         
 }
