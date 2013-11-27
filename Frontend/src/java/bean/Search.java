@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Jan
  */
-public class ObjectToImages {
+public class Search {
     private String name;
 
     

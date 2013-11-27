@@ -34,5 +34,10 @@
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
+    
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+  
+    <bean class="controller.SearchController" p:searchService-ref="searchService" />
 
 </beans>
