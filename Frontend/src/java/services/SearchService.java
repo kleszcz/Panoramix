@@ -26,12 +26,10 @@ public class SearchService {
     private ObjectsDAO objectsDAO;
 
     public List<Images> getImagesByObjectName(String name) {
-
         Integer oid;
         oid = objectsDAO.getOIDByName(name);
         if(oid == null)
             return null;
-
         return imagesDAO.getImagesByOID(oid);
     }
 

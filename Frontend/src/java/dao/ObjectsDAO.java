@@ -25,7 +25,6 @@ public class ObjectsDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
     public Integer getOIDByName(String name) {
         //TODO select * from PANORAMIX.Objects where label == name
 
