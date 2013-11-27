@@ -28,7 +28,7 @@ public class SearchController extends SimpleFormController {
     public void setSearchService(SearchService searchService) {
         this.searchService = searchService;
     }
-    
+
     public SearchController() {
         //Initialize controller properties here or 
         //in the Web Application Context
@@ -54,8 +54,14 @@ public class SearchController extends SimpleFormController {
             BindException errors) throws Exception {
         ModelAndView mv = new ModelAndView(getSuccessView());
         //Do something...
-        Search search = (Search)command;
-        mv.addObject("imagesList", searchService.getImagesByObjectName(search.getName()));
+        Search search = (Search) command;
+        Object list = searchService.getImagesByObjectName(search.getName());
+        if (list == null) 
+            mv.addObject("noResults", true);
+        else {
+            mv.addObject("noResults", false);
+            mv.addObject("imagesList", list);
+        }            
         mv.addObject("searchName", search.getName());
         return mv;
     }

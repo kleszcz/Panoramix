@@ -11,6 +11,7 @@
 <%@page import="bean.Images"%>
 <%@page import="java.awt.Image"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,13 +20,19 @@
     </head>
     <body>
         <h1>Search results for ${searchName}:</h1>
-        <table>
+        <c:if test="${noResults}">
+            <p> Sorry, no results for ${searchName}. </p>
+        </c:if>
+        <c:if test="${!noResults}">
+            <table>
             <c:forEach var="e" items="${imagesList}" >
-            <tr>
-                <td><img alt="${e.description}" src="images/${e.filename}" /></td>
-            </tr>
+                <tr>
+                    <td><img width="120px" height="90px" alt="${e.description}" src="images/${e.filename}" /></td>
+                </tr>
             </c:forEach>
-        </table>
+            </table>
+       </c:if>
+        
         
     </body>
 </html>
