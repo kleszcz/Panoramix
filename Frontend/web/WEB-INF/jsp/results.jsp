@@ -30,7 +30,10 @@
             <table>
             <c:forEach var="e" items="${imagesList}" >
                 <tr>
-                    <td><img width="120px" height="90px" alt="${e.description}" src="images/${e.filename}" /></td>
+                    <td>
+                      
+                        <a href="image.htm?iid=${e.iid}" ><img width="120px" height="90px" alt="${e.description}" src="images/${e.filename}" /></a>
+                    </td>
                 </tr>
             </c:forEach>
             </table>

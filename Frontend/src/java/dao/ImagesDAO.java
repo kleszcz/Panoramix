@@ -7,13 +7,16 @@
 package dao;
 
 import bean.Images;
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -74,4 +77,28 @@ public class ImagesDAO {
 
     }
     
+    public Images getImageById(int iid)
+    {
+        String query = "select * from PANORAMIX.Images where iid =?";
+        Images image = null;
+        try {
+            image = (Images)jdbcTemplate.queryForObject(query, new Object[] {iid}, new RowMapper(){
+                    @Override
+                    public Object mapRow(ResultSet rs, int i) throws SQLException {
+                        return new Images(  rs.getInt("iid"), 
+                                            rs.getInt("uid"),
+                                            rs.getString("filename"),
+                                            rs.getString("description"),
+                                            rs.getTimestamp("added"),
+                                            rs.getInt("taken_from")
+                        );
+                    }
+            });
+        }
+        catch(DataAccessException e)
+        {
+            System.out.println("Couldn't get object [" + iid +"]");
+        }       
+        return image;
+    }
 }

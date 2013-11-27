@@ -14,8 +14,8 @@
     </head>
     <body>
         <h1>Search for images.</h1>
-        <spring:nestedPath path="objectToImages"> 
-            <form action="" method="post">
+        <spring:nestedPath path="search"> 
+            <form action="" method="get">
                 <span>Name:</span> 
                 <spring:bind path="name"> 
                     <input type="text" name="${status.expression}" value="${status.value}"> 

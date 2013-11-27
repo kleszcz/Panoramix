@@ -5,38 +5,38 @@
  */
 package controller;
 
-import bean.Search;
+import bean.Images;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
-import services.SearchService;
+import services.ImageService;
 
 /**
  *
  * @author Jan
  */
-public class SearchController extends SimpleFormController {
+public class ImageController extends SimpleFormController {
 
-    private SearchService searchService;
+    private ImageService imageService;
 
-    public SearchService getSearchService() {
-        return searchService;
+    public ImageService getImageService() {
+        return imageService;
     }
 
-    public void setSearchService(SearchService searchService) {
-        this.searchService = searchService;
+    public void setImageService(ImageService imageService) {
+        this.imageService = imageService;
     }
-
-    public SearchController() {
+    
+    public ImageController() {
         //Initialize controller properties here or 
         //in the Web Application Context
 
-        setCommandClass(Search.class);
-        setCommandName("search");
-        setSuccessView("results");
-        setFormView("search");
+        setCommandClass(Images.class);
+        setCommandName("imageaaa");
+        setSuccessView("image");
+  //      setFormView("results");
     }
 
     @Override
@@ -44,15 +44,13 @@ public class SearchController extends SimpleFormController {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    @Override
-    protected boolean isFormSubmission(HttpServletRequest request) {
-        if(request.getParameter("name") == null)
-            return false;
-        return true;
-    }
-    
     //Use onSubmit instead of doSubmitAction 
     //when you need access to the Request, Response, or BindException objects
+    @Override
+    protected boolean isFormSubmission(HttpServletRequest request) {
+        return true;
+    }
+
     @Override
     protected ModelAndView onSubmit(
             HttpServletRequest request,
@@ -61,15 +59,19 @@ public class SearchController extends SimpleFormController {
             BindException errors) throws Exception {
         ModelAndView mv = new ModelAndView(getSuccessView());
         //Do something...
-        Search search = (Search) command;
-        Object list = searchService.getImagesByObjectName(search.getName());
-        if (list == null) 
-            mv.addObject("noResults", true);
-        else {
-            mv.addObject("noResults", false);
-            mv.addObject("imagesList", list);
-        }            
-        mv.addObject("searchName", search.getName());
+        if(command != null)
+        {
+            Images im = (Images)command;
+            int iid = im.getIid();
+            mv.addObject("iid", iid);
+            mv.addObject("image", imageService.getImageById(iid));
+            mv.addObject("POIList", imageService.getPOIByIid(iid));
+            mv.addObject("POIMap", imageService.getPOIToObjectsMapByIid(iid));
+        }
+        else
+        {
+            System.out.println("[ERROR] Empty command!");
+        }
         return mv;
     }
 

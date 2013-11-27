@@ -27,6 +27,9 @@ public class Objects {
         this.longitude = longitude;
     }
 
+    public Objects() {
+    }
+
     public int getOid() {
         return oid;
     }

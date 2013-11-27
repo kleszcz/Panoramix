@@ -13,7 +13,7 @@
               p:location="/WEB-INF/jdbc.properties" />
     -->
     <bean id="dataSource"
-      class="org.apache.commons.dbcp.BasicDataSource" >
+          class="org.apache.commons.dbcp.BasicDataSource" >
         <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver"/> 
         <property name="url" value="jdbc:derby://localhost:1527/Panoramix"/> 
         <property name="username" value="panoramix"/> 
@@ -23,14 +23,21 @@
     <bean id="imagesDAO" class="dao.ImagesDAO">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    
+    <bean id="poiDAO" class="dao.POIDAO">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
     <bean id="objectsDAO" class="dao.ObjectsDAO">
         <property name="dataSource" ref="dataSource"/>
     </bean>
     
     <bean name="searchService" class="services.SearchService">
         <property name="imagesDAO" ref="imagesDAO"/>
-            <property name="objectsDAO" ref="objectsDAO"/>
+        <property name="objectsDAO" ref="objectsDAO"/>
+    </bean>
+    
+    <bean name="imageService" class="services.ImageService">
+        <property name="imagesDAO" ref="imagesDAO"/>
+        <property name="poiDAO" ref="poiDAO"/>
     </bean>
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->

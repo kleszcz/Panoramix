@@ -39,5 +39,5 @@
 
   
     <bean class="controller.SearchController" p:searchService-ref="searchService" />
-
+    <bean class="controller.ImageController" p:imageService-ref="imageService" />
 </beans>

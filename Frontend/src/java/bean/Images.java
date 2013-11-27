@@ -20,6 +20,25 @@ public class Images {
     private Timestamp added;
     private int taken_from;
 
+    public Images() {
+    }
+
+    public Images(
+            int iid,
+            int uid,
+            String filename,
+            String description,
+            Timestamp added,
+            int taken_from
+    ) {
+        this.iid = iid;
+        this.uid =  uid;
+        this.filename =  filename;
+        this.description =  description;
+        this.added =  added;
+        this.taken_from =  taken_from;
+    }
+
     public int getIid() {
         return iid;
     }
@@ -67,5 +86,5 @@ public class Images {
     public void setTaken_from(int taken_from) {
         this.taken_from = taken_from;
     }
-    
+
 }
