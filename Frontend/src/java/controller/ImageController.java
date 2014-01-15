@@ -19,60 +19,57 @@ import services.ImageService;
  */
 public class ImageController extends SimpleFormController {
 
-    private ImageService imageService;
+	private ImageService imageService;
 
-    public ImageService getImageService() {
-        return imageService;
-    }
+	public ImageService getImageService() {
+		return imageService;
+	}
 
-    public void setImageService(ImageService imageService) {
-        this.imageService = imageService;
-    }
-    
-    public ImageController() {
+	public void setImageService(ImageService imageService) {
+		this.imageService = imageService;
+	}
+
+	public ImageController() {
         //Initialize controller properties here or 
-        //in the Web Application Context
+		//in the Web Application Context
 
-        setCommandClass(Images.class);
-        setCommandName("imageaaa");
-        setSuccessView("image");
-  //      setFormView("results");
-    }
+		setCommandClass(Images.class);
+		setCommandName("image");
+		setSuccessView("image");
+		//      setFormView("results");
+	}
 
-    @Override
-    protected void doSubmitAction(Object command) throws Exception {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+	@Override
+	protected void doSubmitAction(Object command) throws Exception {
+		throw new UnsupportedOperationException("Not yet implemented");
+	}
 
     //Use onSubmit instead of doSubmitAction 
-    //when you need access to the Request, Response, or BindException objects
-    @Override
-    protected boolean isFormSubmission(HttpServletRequest request) {
-        return true;
-    }
+	//when you need access to the Request, Response, or BindException objects
+	@Override
+	protected boolean isFormSubmission(HttpServletRequest request) {
+		return true;
+	}
 
-    @Override
-    protected ModelAndView onSubmit(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            Object command,
-            BindException errors) throws Exception {
-        ModelAndView mv = new ModelAndView(getSuccessView());
-        //Do something...
-        if(command != null)
-        {
-            Images im = (Images)command;
-            int iid = im.getIid();
-            mv.addObject("iid", iid);
-            mv.addObject("image", imageService.getImageById(iid));
-            mv.addObject("POIList", imageService.getPOIByIid(iid));
-            mv.addObject("POIMap", imageService.getPOIToObjectsMapByIid(iid));
-        }
-        else
-        {
-            System.out.println("[ERROR] Empty command!");
-        }
-        return mv;
-    }
+	@Override
+	protected ModelAndView onSubmit(
+		HttpServletRequest request,
+		HttpServletResponse response,
+		Object command,
+		BindException errors) throws Exception {
+		ModelAndView mv = new ModelAndView(getSuccessView());
+		//Do something...
+		if (command != null) {
+			Images im = (Images) command;
+			int iid = im.getIid();
+			mv.addObject("iid", iid);
+			mv.addObject("image", imageService.getImageById(iid));
+			mv.addObject("POIList", imageService.getPOIByIid(iid));
+			mv.addObject("POIMap", imageService.getPOIToObjectsMapByIid(iid));
+		} else {
+			System.out.println("[ERROR] Empty command!");
+		}
+		return mv;
+	}
 
 }
