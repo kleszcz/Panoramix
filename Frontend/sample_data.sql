@@ -19,12 +19,15 @@ insert into Assumptions values(500001, 400001, 200001, 100001, CURRENT_TIMESTAMP
 insert into Assumptions values(500002, 400002, 200002, 100001, CURRENT_TIMESTAMP);
 insert into Assumptions values(500003, 400003, 200001, 100001, CURRENT_TIMESTAMP);
 insert into Assumptions values(500004, 400004, 200002, 100001, CURRENT_TIMESTAMP);
+
 insert into Assumptions values(500005, 400004, 200003, 100004, CURRENT_TIMESTAMP);
 insert into Assumptions values(500006, 400004, 200001, 100004, CURRENT_TIMESTAMP);
+
 
 insert into Comments values(600001, 500001, 100003, 'Właśnie tak! Widać po Błyszczu.',                     CURRENT_TIMESTAMP, +1);
 insert into Comments values(600002, 500001, 100004, 'Zgadzam się z Tobą, joahumie, po tym właśnie widać.', CURRENT_TIMESTAMP, +1);
 insert into Comments values(600003, 500004, 100004, 'Trudno orzec po tym zdjęciu - jesteś przekonany?.',   CURRENT_TIMESTAMP,  0);
+
 insert into Comments values(600004, 500004, 100001, 'Tak. Popatrz na grań od Bystrej na dużym zoomie.',    CURRENT_TIMESTAMP, +1);
 insert into Comments values(600005, 500005, 100003, 'Nie w tę stronę, euzebiuszu.',                        CURRENT_TIMESTAMP, -1);
 insert into Comments values(600006, 500005, 100002, 'Świnica nie leży w Tatrach Zachodnich.',              CURRENT_TIMESTAMP, -1);

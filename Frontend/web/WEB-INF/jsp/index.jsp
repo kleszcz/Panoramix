@@ -22,6 +22,7 @@
 			java.sql.ResultSet images = connection.createStatement().executeQuery(
 				"select * from Images"
 			);
+
 			while(images.next()) {
 				int iid = images.getInt("iid");
 		%>
@@ -45,23 +46,28 @@
 				);
 				while(assumptions.next()) {%>
 				<b><%=assumptions.getString("label")%></b> (ocena: <%=assumptions.getInt("votes")%>): <%=assumptions.getString("description")%>
+
 				<ul>
 					<%
 					java.sql.ResultSet comments = connection.createStatement().executeQuery(
 						"select * from Comments join Users using (uid) where aid = " + assumptions.getInt("aid") + " order by added"
 					);
+
 					while(comments.next()) {
 						int v = comments.getInt("vote");%>
 					<li class="<%=(v>0) ? "upvote" : (v<0) ? "downvote" : ""%>"><b><%=comments.getString("uname")%></b>: <%=comments.getString("text")%></li>
 					<%}%>
 				</ul>
 				<%}%>
+
 			</li>
 			<%}%>
 		</ul>
 		<%}%>
 		<%} catch(Exception e) { %>
+
 		<h1> <%=e%> </h1>
+
 		<%}%>
 	</body>
 </html>
