@@ -43,7 +43,7 @@ public class ImagesDAO {
     }
 
     public List<Images> getImagesByOID(int oid) {
-        String query = "select * from PANORAMIX.Images join POI using (iid) join Assumptions using (pid) where oid =?";
+        String query = "select DISTINCT Images.IID, Images.UID, Images.FILENAME, Images.DESCRIPTION, Images.ADDED, Images.TAKEN_FROM  from PANORAMIX.Images join POI using (iid) join Assumptions using (pid) where oid = ?";
         List<Map<String, Object>> result = null;
         List<Images> images = null;
         try {
@@ -65,6 +65,7 @@ public class ImagesDAO {
                  img.setAdded((Timestamp) el.get("ADDED"));
                  if(el.get("TAKEN_FROM") != null) 
                      img.setTaken_from((int) el.get("TAKEN_FROM"));
+				 
                  images.add(img);
              }
              System.out.println(images.get(0).getFilename());
