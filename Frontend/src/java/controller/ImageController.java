@@ -59,6 +59,9 @@ public class ImageController extends SimpleFormController {
 		BindException errors) throws Exception {
 		ModelAndView mv = new ModelAndView(getSuccessView());
 		//Do something...
+
+	//	System.out.println(request.getParameter("img.x") + " " + request.getParameter("img.y") );
+		// Powyższa linia pozwala znaleźć klik na obrazku
 		if (command != null) {
 			Images im = (Images) command;
 			int iid = im.getIid();
