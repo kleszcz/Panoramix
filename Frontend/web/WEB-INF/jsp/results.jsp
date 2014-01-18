@@ -28,16 +28,16 @@
         </c:if>
         <c:if test="${!noResults}">
             <table>
-            <c:forEach var="e" items="${imagesList}" >
-                <tr>
-                    <td>
-                      
-                        <a href="image.htm?iid=${e.iid}" ><img width="120px" height="90px" alt="${e.description}" src="images/${e.filename}" /></a>
-                    </td>
-                </tr>
-            </c:forEach>
+                <c:forEach var="e" items="${searchList}" >
+                    <tr>
+                        <td> ${e.label} </td>
+                        <td>                      
+                            <a href="image.htm?iid=${e.iid}" ><img width="120px" height="90px" src="images/${e.filename}" /></a>
+                        </td>
+                    </tr>
+                </c:forEach>
             </table>
-       </c:if>
-        
+        </c:if>
+
     </body>
 </html>

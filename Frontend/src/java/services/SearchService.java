@@ -3,16 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package services;
 
-import bean.Images;
-import dao.ImagesDAO;
-import dao.ObjectsDAO;
+import bean.Search;
+import dao.SearchDAO;
 import java.util.List;
-
-
-
 
 /**
  *
@@ -20,27 +15,17 @@ import java.util.List;
  */
 public class SearchService {
 
+	private SearchDAO searchDAO;
 
+	public SearchDAO getSearchDAO() {
+		return searchDAO;
+	}
 
-    private ImagesDAO imagesDAO;
-    private ObjectsDAO objectsDAO;
+	public List<Search> getSearchByName(String name) {
+		return searchDAO.getByName(name);
+	}
 
-    public List<Images> getImagesByObjectName(String name) {
-        Integer oid;
-        oid = objectsDAO.getOIDByName(name);
-        if(oid == null)
-            return null;
-        return imagesDAO.getImagesByOID(oid);
-    }
-
-    public void setImagesDAO(ImagesDAO imagesDAO) {
-        this.imagesDAO = imagesDAO;
-    }
-
-    public void setObjectsDAO(ObjectsDAO objectsDAO) {
-        this.objectsDAO = objectsDAO;
-
-
-
-    }
+	public void setSearchDAO(SearchDAO searchDAO) {
+		this.searchDAO = searchDAO;
+	}
 }

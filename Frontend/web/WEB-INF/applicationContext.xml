@@ -20,6 +20,9 @@
         <property name="password" value="panoramix"/> 
     </bean>
     
+    <bean id="searchDAO" class="dao.SearchDAO">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
     <bean id="imagesDAO" class="dao.ImagesDAO">
         <property name="dataSource" ref="dataSource"/>
     </bean>
@@ -31,8 +34,7 @@
     </bean>
     
     <bean name="searchService" class="services.SearchService">
-        <property name="imagesDAO" ref="imagesDAO"/>
-        <property name="objectsDAO" ref="objectsDAO"/>
+        <property name="searchDAO" ref="searchDAO"/>
     </bean>
     
     <bean name="imageService" class="services.ImageService">
