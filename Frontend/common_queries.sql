@@ -1,4 +1,14 @@
-select * from Images join POI using (iid) join Assumptions using (pid) where oid = 200001;
+-- display image
 select * from POI    left join Assumptions using (pid) left join Objects using (oid) where iid=300001;
-select * from POI left join Assumptions using (pid) left join Objects using (oid) where iid=300002;
-select * from (select A.*, (select coalesce(sum(vote),0) from Comments as C where C.aid = A.aid) as votes from Assumptions as A) as AV left join Objects using (oid) order by votes desc, AV.added;
+
+-- search
+select iid, oid, filename, label, votes, Images.added
+from (
+	select iid, oid, max(votes) as votes
+	from Votes left join POI using (pid)
+	where oid in (
+		select oid from Objects where upper(label) like upper('%wat%')
+	)
+	group by iid,oid
+) as Results left join Objects using (oid) left join Images using (iid)
+order by label, votes desc;
