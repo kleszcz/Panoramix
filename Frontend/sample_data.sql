@@ -15,6 +15,8 @@ insert into POI values(400002, 300001, 100001, 680, 247);
 insert into POI values(400003, 300002, 100001,  52, 310);
 insert into POI values(400004, 300002, 100001, 137, 324);
 
+insert into POI values(400005, 300001, 100001, 782, 252); # Purposefully without assumptions
+
 insert into Assumptions values(500001, 400001, 200001, 100001, CURRENT_TIMESTAMP);
 insert into Assumptions values(500002, 400002, 200002, 100001, CURRENT_TIMESTAMP);
 insert into Assumptions values(500003, 400003, 200001, 100001, CURRENT_TIMESTAMP);
