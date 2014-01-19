@@ -8,9 +8,9 @@ where iid = 300001;
 -- all Assumed Objects on an Image
 select
 	pid, POI.uid as point_author, x, y,
-	aid, Assumptions.uid as assumption_author, Assumptions.added as added,
+	aid, Votes.uid as assumption_author, votes, Votes.added as added,
 	oid, description, label
-from  POI join Assumptions using (pid) join Objects using (oid)
+from  POI join Votes using (pid) join Objects using (oid)
 where iid = 300001;
 
 -- all Comments on an Image
