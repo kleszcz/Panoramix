@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -25,7 +26,7 @@ public class ImagesDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public ImageInfo getImageById(int iid) {
+	public ImageInfo getByIid(Integer iid) {
 		String query = "select "
 			+ "	iid, Images.uid as uid, uname, filename, Images.description, added, "
 			+ "	label as taken_from "
@@ -33,19 +34,7 @@ public class ImagesDAO {
 			+ "where iid = ?";
 		ImageInfo image = null;
 		try {
-			image = (ImageInfo) jdbcTemplate.queryForObject(query, new Object[]{iid}, new RowMapper() {
-				@Override
-				public Object mapRow(ResultSet rs, int i) throws SQLException {
-					return new ImageInfo(rs.getInt("iid"),
-						rs.getInt("uid"),
-						rs.getString("uname"),
-						rs.getString("filename"),
-						rs.getString("description"),
-						rs.getTimestamp("added"),
-						rs.getString("taken_from")
-					);
-				}
-			});
+			image = (ImageInfo) jdbcTemplate.queryForObject(query, new Object[]{iid}, new BeanPropertyRowMapper<>(ImageInfo.class));
 		} catch (DataAccessException e) {
 			System.out.println("Couldn't get object [" + iid + "]");
 		}

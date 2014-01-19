@@ -41,21 +41,6 @@ public class SearchDAO {
 
 		List<Search> search = null;
 		try {
-/*			List<Map<String, Object>> result = null;
-			result = jdbcTemplate.queryForList(query);//, new Object[] {name});
-			search = new ArrayList<>();
-			for (Map<String, Object> el : result) {
-				Search s = new Search();
-				s.setName(name);
-				s.setLabel((String) el.get("label"));
-				s.setIid((int) el.get("iid"));
-				s.setOid((int) el.get("oid"));
-				s.setFilename((String) el.get("filename"));
-				s.setAdded((Timestamp) el.get("added"));
-				s.setVotes((int) el.get("votes"));
-				search.add(s);
-			}
-	*/
 			search = jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Search.class));
 		} catch (DataAccessException e) {
 			System.out.println("Couldn't get images for object [" + name + "]");

@@ -24,7 +24,7 @@ public class CommentsDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public List<Comments> getByIid(int iid) {
+	public List<Comments> getByIid(Integer iid) {
 		List<Comments> comments = null;
 		String query = "select "
 			+ "cid, text, Comments.UID as author, vote, Comments.added as added, "
@@ -33,9 +33,8 @@ public class CommentsDAO {
 			+ "where iid = ?";
 		try {
 			comments = jdbcTemplate.query(query, new Object[]{iid}, new BeanPropertyRowMapper<>(Comments.class));
-		}
-		catch(DataAccessException e) {
-			
+		} catch (DataAccessException e) {
+
 		}
 		return comments;
 	}

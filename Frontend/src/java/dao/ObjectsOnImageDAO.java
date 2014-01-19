@@ -24,7 +24,7 @@ public class ObjectsOnImageDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public List<ObjectsOnImage> getByIid(int iid) {
+	public List<ObjectsOnImage> getByIid(Integer iid) {
 		String query = "select "
 			+ "	pid, POI.uid as point_author, x, y, "
 			+ "	aid, Votes.uid as assumption_author, votes, Votes.added as added, "

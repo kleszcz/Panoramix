@@ -58,19 +58,19 @@ public class ImageService {
 		this.imagesDAO = imagesDAO;
 	}
 
-	public ImageInfo getImageById(int iid) {
-		return imagesDAO.getImageById(iid);
+	public ImageInfo getImageById(Integer iid) {
+		return imagesDAO.getByIid(iid);
 	}
 
-	public List<ObjectsOnImage> getObjectsOnImageByIid(int iid) {
+	public List<ObjectsOnImage> getObjectsOnImageByIid(Integer iid) {
 		return objectsOnImageDAO.getByIid(iid);
 	}
 
-	public List<Comments> getCommentsByIid(int iid) {
+	public List<Comments> getCommentsByIid(Integer iid) {
 		return commentsDAO.getByIid(iid);
 	}
 
-	public List<UsersOnImage> getUsersOnImage(int iid) {
+	public List<UsersOnImage> getUsersOnImage(Integer iid) {
 		return usersOnImageDAO.getByIid(iid);
 	}
 }

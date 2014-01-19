@@ -13,71 +13,88 @@ import java.sql.Timestamp;
  */
 public class ObjectsOnImage {
 
-	private int pid;
-	private int point_author;
-	private int x;
-	private int y;
-	private int aid;
-	private int assumption_author;
-	private int votes;
+	private Integer pid;
+	private Integer point_author;
+	private Integer x;
+	private Integer y;
+	private Integer aid;
+	private Integer assumption_author;
+	private Integer votes;
 	private Timestamp added;
-	private int oid;
+	private Integer oid;
 	private String description;
 	private String label;
 
-	public int getPid() {
+	public Integer getPid() {
 		return pid;
 	}
 
-	public void setPid(int pid) {
+	public ObjectsOnImage() {
+	}
+
+	public ObjectsOnImage(Integer pid, Integer point_author, Integer x, Integer y, Integer aid, Integer assumption_author, Integer votes, Timestamp added, Integer oid, String description, String label) {
+		this.pid = pid;
+		this.point_author = point_author;
+		this.x = x;
+		this.y = y;
+		this.aid = aid;
+		this.assumption_author = assumption_author;
+		this.votes = votes;
+		this.added = added;
+		this.oid = oid;
+		this.description = description;
+		this.label = label;
+	}
+
+	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
 
-	public int getPoint_author() {
+	public Integer getPoint_author() {
 		return point_author;
 	}
 
-	public void setPoint_author(int point_author) {
+	public void setPoint_author(Integer point_author) {
 		this.point_author = point_author;
 	}
 
-	public int getX() {
+	public Integer getX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(Integer x) {
 		this.x = x;
 	}
 
-	public int getY() {
+	public Integer getY() {
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(Integer y) {
 		this.y = y;
 	}
 
-	public int getAid() {
+	public Integer getAid() {
 		return aid;
 	}
 
-	public void setAid(int aid) {
+	public void setAid(Integer aid) {
 		this.aid = aid;
 	}
 
-	public int getAssumption_author() {
+	public Integer getAssumption_author() {
 		return assumption_author;
 	}
 
-	public void setAssumption_author(int assumption_author) {
+	public void setAssumption_author(Integer assumption_author) {
 		this.assumption_author = assumption_author;
 	}
 
-	public int getVotes() {
+	public Integer getVotes() {
 		return votes;
 	}
 
-	public void setVotes(int votes) {
+	public void setVotes(Integer votes) {
 		this.votes = votes;
 	}
 
@@ -89,11 +106,11 @@ public class ObjectsOnImage {
 		this.added = added;
 	}
 
-	public int getOid() {
+	public Integer getOid() {
 		return oid;
 	}
 
-	public void setOid(int oid) {
+	public void setOid(Integer oid) {
 		this.oid = oid;
 	}
 

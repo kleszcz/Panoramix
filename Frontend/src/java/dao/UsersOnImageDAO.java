@@ -24,7 +24,7 @@ public class UsersOnImageDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public List<UsersOnImage> getByIid(int iid) {
+	public List<UsersOnImage> getByIid(Integer iid) {
 		List<UsersOnImage> users = null;
 		String query = "select uid, uname from Users where uid in ( "
 			+ "( select Images.uid from Images "

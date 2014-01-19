@@ -13,20 +13,20 @@ import java.sql.Timestamp;
  */
 public class Comments {
 
-    private int cid;
-	private String text;    
-    private int author;
-    private int vote;
-    private Timestamp added;    
+	private Integer cid;
+	private String text;
+	private Integer author;
+	private Integer vote;
+	private Timestamp added;
 
-	public int getAuthor() {
+	public Integer getAuthor() {
 		return author;
 	}
 
 	public Comments() {
 	}
 
-	public Comments(int cid, String text, int author, int vote, Timestamp added, int aid) {
+	public Comments(Integer cid, String text, Integer author, Integer vote, Timestamp added, Integer aid) {
 		this.cid = cid;
 		this.text = text;
 		this.author = author;
@@ -35,48 +35,48 @@ public class Comments {
 		this.aid = aid;
 	}
 
-	public void setAuthor(int author) {
+	public void setAuthor(Integer author) {
 		this.author = author;
 	}
-	private int aid;
-	
-    public int getCid() {
-        return cid;
-    }
+	private Integer aid;
 
-    public void setCid(int cid) {
-        this.cid = cid;
-    }
+	public Integer getCid() {
+		return cid;
+	}
 
-    public int getAid() {
-        return aid;
-    }
+	public void setCid(Integer cid) {
+		this.cid = cid;
+	}
 
-    public void setAid(int aid) {
-        this.aid = aid;
-    }
+	public Integer getAid() {
+		return aid;
+	}
 
-    public String getText() {
-        return text;
-    }
+	public void setAid(Integer aid) {
+		this.aid = aid;
+	}
 
-    public void setText(String text) {
-        this.text = text;
-    }
+	public String getText() {
+		return text;
+	}
 
-    public Timestamp getAdded() {
-        return added;
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
 
-    public void setAdded(Timestamp added) {
-        this.added = added;
-    }
+	public Timestamp getAdded() {
+		return added;
+	}
 
-    public int getVote() {
-        return vote;
-    }
+	public void setAdded(Timestamp added) {
+		this.added = added;
+	}
 
-    public void setVote(int vote) {
-        this.vote = vote;
-    }
+	public Integer getVote() {
+		return vote;
+	}
+
+	public void setVote(Integer vote) {
+		this.vote = vote;
+	}
 }

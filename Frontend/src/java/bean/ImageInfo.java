@@ -13,8 +13,8 @@ import java.sql.Timestamp;
  */
 public class ImageInfo {
 
-	private int iid;
-	private int uid;
+	private Integer iid;
+	private Integer uid;
 	private String filename;
 	private String description;
 	private Timestamp added;
@@ -33,8 +33,8 @@ public class ImageInfo {
 	}
 
 	public ImageInfo(
-		int iid,
-		int uid,
+		Integer iid,
+		Integer uid,
 		String uname,
 		String filename,
 		String description,
@@ -50,19 +50,19 @@ public class ImageInfo {
 		this.taken_from_label = taken_from_label;
 	}
 
-	public int getIid() {
+	public Integer getIid() {
 		return iid;
 	}
 
-	public void setIid(int iid) {
+	public void setIid(Integer iid) {
 		this.iid = iid;
 	}
 
-	public int getUid() {
+	public Integer getUid() {
 		return uid;
 	}
 
-	public void setUid(int uid) {
+	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
 

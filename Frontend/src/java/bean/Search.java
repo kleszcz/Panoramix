@@ -19,21 +19,20 @@ public class Search {
 	private String name;
 
 	private String label;
-	private int iid;
-	
-	public Search()
-	{
+	private Integer iid;
+
+	public Search() {
 	}
 
-	public Search(int iid, int oid, String filename, String label, int votes, Timestamp added) {
+	public Search(Integer iid, Integer oid, String filename, String label, Integer votes, Timestamp added) {
 		this.iid = iid;
 		this.oid = oid;
 		this.filename = filename;
 		this.label = label;
 		this.votes = votes;
-		this.added = added;		
+		this.added = added;
 	}
-	private int oid;
+	private Integer oid;
 	private String filename;
 	private Timestamp added;
 
@@ -45,19 +44,19 @@ public class Search {
 		this.label = label;
 	}
 
-	public int getIid() {
+	public Integer getIid() {
 		return iid;
 	}
 
-	public void setIid(int iid) {
+	public void setIid(Integer iid) {
 		this.iid = iid;
 	}
 
-	public int getOid() {
+	public Integer getOid() {
 		return oid;
 	}
 
-	public void setOid(int oid) {
+	public void setOid(Integer oid) {
 		this.oid = oid;
 	}
 
@@ -77,14 +76,14 @@ public class Search {
 		this.added = added;
 	}
 
-	public int getVotes() {
+	public Integer getVotes() {
 		return votes;
 	}
 
-	public void setVotes(int votes) {
+	public void setVotes(Integer votes) {
 		this.votes = votes;
 	}
-	private int votes;
+	private Integer votes;
 
 	public String getName() {
 		return name;

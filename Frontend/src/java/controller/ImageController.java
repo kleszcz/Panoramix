@@ -57,12 +57,14 @@ public class ImageController extends SimpleFormController {
 		HttpServletResponse response,
 		Object command,
 		BindException errors) throws Exception {
+
 		ModelAndView mv = new ModelAndView(getSuccessView());
 		//	System.out.println(request.getParameter("img.x") + " " + request.getParameter("img.y") );
 		// Powyższa linia pozwala znaleźć klik na obrazku
+
 		if (command != null) {
 			ImageInfo im = (ImageInfo) command;
-			int iid = im.getIid();
+			Integer iid = im.getIid();
 			mv.addObject("iid", iid);
 			mv.addObject("image", imageService.getImageById(iid));
 			mv.addObject("objectsList", imageService.getObjectsOnImageByIid(iid));

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package bean;
 
 /**
@@ -11,22 +10,23 @@ package bean;
  * @author Jan
  */
 public class UsersOnImage {
-	private int uid;
+
+	private Integer uid;
 	private String uname;
 
-	public int getUid() {
+	public Integer getUid() {
 		return uid;
 	}
 
 	public UsersOnImage() {
 	}
 
-	public UsersOnImage(int uid, String uname) {
+	public UsersOnImage(Integer uid, String uname) {
 		this.uid = uid;
 		this.uname = uname;
 	}
 
-	public void setUid(int uid) {
+	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
 
@@ -37,5 +37,5 @@ public class UsersOnImage {
 	public void setUname(String uname) {
 		this.uname = uname;
 	}
-	
+
 }
