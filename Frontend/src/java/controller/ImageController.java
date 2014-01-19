@@ -66,6 +66,7 @@ public class ImageController extends SimpleFormController {
 			mv.addObject("iid", iid);
 			mv.addObject("image", imageService.getImageById(iid));
 			mv.addObject("objectsList", imageService.getObjectsOnImageByIid(iid));
+			mv.addObject("commentsList", imageService.getCommentsByIid(iid));
 		} else {
 			System.out.println("[ERROR] Empty command!");
 		}

@@ -5,12 +5,12 @@
  */
 package services;
 
+import bean.Comments;
 import bean.ImageInfo;
 import bean.ObjectsOnImage;
-import bean.POI;
+import dao.CommentsDAO;
 import dao.ImagesDAO;
 import dao.ObjectsOnImageDAO;
-import dao.POIDAO;
 import java.util.List;
 
 /**
@@ -20,8 +20,16 @@ import java.util.List;
 public class ImageService {
 
 	private ImagesDAO imagesDAO;
-	private POIDAO poiDAO; //TODO get rid of it
 	private ObjectsOnImageDAO objectsOnImageDAO;
+	private CommentsDAO commentsDAO;
+
+	public CommentsDAO getCommentsDAO() {
+		return commentsDAO;
+	}
+
+	public void setCommentsDAO(CommentsDAO commentsDAO) {
+		this.commentsDAO = commentsDAO;
+	}
 
 	public ObjectsOnImageDAO getObjectsOnImageDAO() {
 		return objectsOnImageDAO;
@@ -29,14 +37,6 @@ public class ImageService {
 
 	public void setObjectsOnImageDAO(ObjectsOnImageDAO objectsOnImageDAO) {
 		this.objectsOnImageDAO = objectsOnImageDAO;
-	}
-
-	public POIDAO getPoiDAO() {
-		return poiDAO;
-	}
-
-	public void setPoiDAO(POIDAO poiDAO) {
-		this.poiDAO = poiDAO;
 	}
 
 	public ImagesDAO getImagesDAO() {
@@ -51,11 +51,11 @@ public class ImageService {
 		return imagesDAO.getImageById(iid);
 	}
 
-	public List<POI> getPOIByIid(int iid) {
-		return poiDAO.getPOIsByIid(iid);
-	}
-
 	public List<ObjectsOnImage> getObjectsOnImageByIid(int iid) {
 		return objectsOnImageDAO.getByIid(iid);
+	}
+	
+	public List<Comments> getCommentsByIid(int iid) {
+		return commentsDAO.getByIid(iid);
 	}
 }

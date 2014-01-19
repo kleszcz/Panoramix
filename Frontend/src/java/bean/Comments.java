@@ -14,12 +14,32 @@ import java.sql.Timestamp;
 public class Comments {
 
     private int cid;
-    private int aid;
-    private int uid;
-    private String text;
-    private Timestamp added;
+	private String text;    
+    private int author;
     private int vote;
+    private Timestamp added;    
 
+	public int getAuthor() {
+		return author;
+	}
+
+	public Comments() {
+	}
+
+	public Comments(int cid, String text, int author, int vote, Timestamp added, int aid) {
+		this.cid = cid;
+		this.text = text;
+		this.author = author;
+		this.vote = vote;
+		this.added = added;
+		this.aid = aid;
+	}
+
+	public void setAuthor(int author) {
+		this.author = author;
+	}
+	private int aid;
+	
     public int getCid() {
         return cid;
     }
@@ -34,14 +54,6 @@ public class Comments {
 
     public void setAid(int aid) {
         this.aid = aid;
-    }
-
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
     }
 
     public String getText() {
