@@ -11,10 +11,15 @@
         </style>
     </head>
     <body>
-        <form action="search.htm" method="get">
+
+
+        <form action="search.htm" method="get" >
+            <a href="index.htm" >Home</a>
+            <a href="search.htm" >Search</a>
             <span>Name:</span>                
             <input type="text" name="name" > 
             <input type="submit" value="Search"> 
+
         </form>
         <%
                         try {
@@ -37,8 +42,8 @@
             <%
                                 java.sql.ResultSet POI = connection.createStatement().executeQuery(
                                         "select * from POI where iid = " + iid
-                                );
-                                while (POI.next()) {%>
+				);
+				while (POI.next()) {%>
             <li>
                 <p>(<%=POI.getInt("x")%>, <%=POI.getInt("y")%>)</p>
                 <%
@@ -47,19 +52,19 @@
                                                 + " (select coalesce(sum(vote),0) from Comments as C where C.aid = A.aid) as votes"
                                                 + " from Assumptions as A where pid = " + POI.getInt("pid") + ") as AV"
                                                 + " left join Objects using (oid)"
-                                                + " order by votes desc, AV.added"
-                                        );
-                                        while (assumptions.next()) {%>
+						+ " order by votes desc, AV.added"
+					);
+					while (assumptions.next()) {%>
                 <b><%=assumptions.getString("label")%></b> (ocena: <%=assumptions.getInt("votes")%>): <%=assumptions.getString("description")%>
 
                 <ul>
                     <%
                                                 java.sql.ResultSet comments = connection.createStatement().executeQuery(
                                                         "select * from Comments join Users using (uid) where aid = " + assumptions.getInt("aid") + " order by added"
-                                                );
+						);
 
-                                                while (comments.next()) {
-                                                        int v = comments.getInt("vote");%>
+						while (comments.next()) {
+							int v = comments.getInt("vote");%>
                     <li class="<%=(v > 0) ? "upvote" : (v < 0) ? "downvote" : ""%>"><b><%=comments.getString("uname")%></b>: <%=comments.getString("text")%></li>
                             <%}%>
                 </ul>
