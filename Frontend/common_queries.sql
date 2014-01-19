@@ -5,13 +5,13 @@ select
 from  Images join Users using (uid) left join Objects on (taken_from = oid)
 where iid = 300001;
 
--- all Assumed Objects on an Image
+-- all POIs and all Assumed Objects on an Image
 select
 	pid, POI.uid as point_author, x, y,
 	aid, Votes.uid as assumption_author, votes, Votes.added as added,
 	oid, description, label
-from  POI join Votes using (pid) join Objects using (oid)
-where iid = 300002 
+from  POI left join Votes using (pid) left join Objects using (oid)
+where iid = 300001
 order by pid, Votes.votes desc;
 
 -- all Comments on an Image
