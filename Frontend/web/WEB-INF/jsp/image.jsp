@@ -10,9 +10,15 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Panoramix</title>
 		<style type="text/css">
-			div               {border: solid black 1px;}
+			div {border: solid black 1px;}
 
-			img.marker        {content:url("gfx/map_pin.png"); position: absolute; width: 20px; height: 20px;}
+			img#picture  {width: 600px;}
+			img.marker {
+				content:url("gfx/map_pin.png");
+				position: absolute;
+				-webkit-transform:translate(-50%, -100%); /*FIXME: FUGLY*/
+				transform:translate(-50%, -100%);
+			}
 			img#active.marker {content:url("gfx/map_pin_sel.png");}
 
 			div.poi           {background: lightgray;}
@@ -42,9 +48,9 @@
 		</script>
 	</head>
 	<body>
-		<div name="imageContainer" >
+		<div name="imageContainer">
 			<h1>${image.description}</h1>
-			<div style="position: relative">
+			<div id="img" style="position: relative; display: inline-block;">
 				<!-- Wykomentowane rzeczy do wykrywania kliku kliku -->
 				<!-- <form method="POST"> -->
 				<c:set var="pid" value="${0}" />
@@ -52,22 +58,22 @@
 				<c:forEach var="obj" items="${objectsList}" >
 					<c:choose>
 						<c:when test="${obj.pid == pid && obj.votes > last_votes}" >
-							<img name="pin_${obj.pid}" title="${obj.label} - ${obj.description}" class="marker" style="top: ${obj.y-20}px; left: ${obj.x-10}px;" onclick="onPOIClick(${obj.pid})"/>
+							<img name="pin_${obj.pid}" title="${obj.label} - ${obj.description}" class="marker" style="top: ${obj.y*100}%; left: ${obj.x*100}%;" onclick="onPOIClick(${obj.pid})"/>
 							<c:set var="last_votes" value="${obj.votes}" />
 						</c:when>
 						<c:when test="${obj.pid != pid}" >
-							<img name="pin_${obj.pid}" title="${obj.label} - ${obj.description}" class="marker" style="top: ${obj.y-20}px; left: ${obj.x-10}px;" onclick="onPOIClick(${obj.pid})"/>
+							<img name="pin_${obj.pid}" title="${obj.label} - ${obj.description}" class="marker" style="top: ${obj.y*100}%; left: ${obj.x*100}%;" onclick="onPOIClick(${obj.pid})"/>
 							<c:set var="pid" value="${obj.pid}"/>
 							<c:set var="last_votes" value="${obj.votes}" />
 						</c:when>
 					</c:choose>
-
 				</c:forEach>
-				<img alt="${image.filename}" src="images/${image.filename}" /> <br/>
-					<!--<input type="image", src="images/${image.filename}", name="img" />
-					</form>-->
-				Photo by: ${image.uname} from ${image.taken_from_label}
+				<img alt="${image.filename}" src="images/${image.filename}" id="picture"/>
 			</div>
+			<br/>
+			<!--<input type="image", src="images/${image.filename}", name="img" />
+			</form>-->
+			Photo by: ${image.uname} from ${image.taken_from_label}
 		</div>
 		<div name="commentsContainer">
 			<c:set var="id" value="${0}" />

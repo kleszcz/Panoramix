@@ -19,20 +19,20 @@ insert into Images values(300003, 100001, 'sample3.jpg', 'Piękny zaawansowany w
 insert into Images values(300004, 100001, 'sample4.jpg', 'Widok z Ciemniaka na GGTZ',                          CURRENT_TIMESTAMP, null);
 insert into Images values(300005, 100001, 'sample5.jpg', 'Widok z okolic Murowańca na Kościelec i kolegów.',   CURRENT_TIMESTAMP, null);
 
-insert into POI values(400001, 300001, 100001, 635, 235); -- Bystra
-insert into POI values(400002, 300001, 100001, 680, 247); -- Błyszcz
-insert into POI values(400003, 300002, 100001,  52, 310); -- Bystra
-insert into POI values(400004, 300002, 100001, 137, 324); -- Błyszcz
-insert into POI values(400005, 300001, 100001, 782, 252); -- Starorobociański. Purposefully without assumptions
-insert into POI values(400006, 300003, 100001, 142, 298); -- Świnica
-insert into POI values(400007, 300003, 100001, 324, 320); -- Koprowy Wierch
-insert into POI values(400008, 300004, 100001, 166, 347); -- Siwy Zwornik
-insert into POI values(400009, 300004, 100001, 483, 323); -- Wołowiec
-insert into POI values(400010, 300004, 100001, 910, 386); -- Kominiarski
-insert into POI values(400011, 300005, 100001, 455, 305); -- Świnica
-insert into POI values(400012, 300005, 100001, 226, 292); -- Kościelec
-insert into POI values(400013, 300005, 100001, 316, 324); -- Niebieska Turnia
-insert into POI values(400014, 300003, 100001, 108, 308); -- Niebieska Turnia.
+insert into POI values(400001, 300001, 100001, 635/922., 235/691.); -- Bystra
+insert into POI values(400002, 300001, 100001, 680/922., 247/691.); -- Błyszcz
+insert into POI values(400003, 300002, 100001,  52/922., 310/691.); -- Bystra
+insert into POI values(400004, 300002, 100001, 137/922., 324/691.); -- Błyszcz
+insert into POI values(400005, 300001, 100001, 782/922., 252/691.); -- Starorobociański. Purposefully without assumptions
+insert into POI values(400006, 300003, 100001, 142/922., 298/691.); -- Świnica
+insert into POI values(400007, 300003, 100001, 324/922., 320/691.); -- Koprowy Wierch
+insert into POI values(400008, 300004, 100001, 166/922., 347/691.); -- Siwy Zwornik
+insert into POI values(400009, 300004, 100001, 483/922., 323/691.); -- Wołowiec
+insert into POI values(400010, 300004, 100001, 910/922., 386/691.); -- Kominiarski
+insert into POI values(400011, 300005, 100001, 455/922., 305/691.); -- Świnica
+insert into POI values(400012, 300005, 100001, 226/922., 292/691.); -- Kościelec
+insert into POI values(400013, 300005, 100001, 316/922., 324/691.); -- Niebieska Turnia
+insert into POI values(400014, 300003, 100001, 108/922., 308/691.); -- Niebieska Turnia.
 
 insert into Assumptions values(500001, 400001, 200001, 100001, CURRENT_TIMESTAMP);
 insert into Assumptions values(500002, 400002, 200002, 100001, CURRENT_TIMESTAMP);

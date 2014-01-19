@@ -15,8 +15,8 @@ public class ObjectsOnImage {
 
 	private Integer pid;
 	private Integer point_author;
-	private Integer x;
-	private Integer y;
+	private Float x;
+	private Float y;
 	private Integer aid;
 	private Integer assumption_author;
 	private Integer votes;
@@ -32,7 +32,7 @@ public class ObjectsOnImage {
 	public ObjectsOnImage() {
 	}
 
-	public ObjectsOnImage(Integer pid, Integer point_author, Integer x, Integer y, Integer aid, Integer assumption_author, Integer votes, Timestamp added, Integer oid, String description, String label) {
+	public ObjectsOnImage(Integer pid, Integer point_author, Float x, Float y, Integer aid, Integer assumption_author, Integer votes, Timestamp added, Integer oid, String description, String label) {
 		this.pid = pid;
 		this.point_author = point_author;
 		this.x = x;
@@ -58,19 +58,19 @@ public class ObjectsOnImage {
 		this.point_author = point_author;
 	}
 
-	public Integer getX() {
+	public Float getX() {
 		return x;
 	}
 
-	public void setX(Integer x) {
+	public void setX(Float x) {
 		this.x = x;
 	}
 
-	public Integer getY() {
+	public Float getY() {
 		return y;
 	}
 
-	public void setY(Integer y) {
+	public void setY(Float y) {
 		this.y = y;
 	}
 
