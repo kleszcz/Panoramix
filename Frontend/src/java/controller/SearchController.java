@@ -6,6 +6,7 @@
 package controller;
 
 import bean.Search;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.validation.BindException;
@@ -30,13 +31,13 @@ public class SearchController extends SimpleFormController {
 	}
 
 	public SearchController() {
-        //Initialize controller properties here or 
+		//Initialize controller properties here or 
 		//in the Web Application Context
 
 		setCommandClass(Search.class);
 		setCommandName("search");
 		setSuccessView("results");
-		setFormView("search");
+		//	setFormView("search");
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class SearchController extends SimpleFormController {
 		return true;
 	}
 
-    //Use onSubmit instead of doSubmitAction 
+	//Use onSubmit instead of doSubmitAction 
 	//when you need access to the Request, Response, or BindException objects
 	@Override
 	protected ModelAndView onSubmit(
@@ -64,9 +65,12 @@ public class SearchController extends SimpleFormController {
 		//Do something...
 		Search search = (Search) command;
 		Object list = searchService.getSearchByName(search.getName());
-		if (list == null) {
+
+		if (((List<Search>) list).isEmpty()) {
+			System.out.println("No list");
 			mv.addObject("noResults", true);
 		} else {
+			System.out.println("List size=" + ((List<Search>) list).size());
 			mv.addObject("noResults", false);
 			mv.addObject("searchList", list);
 		}
