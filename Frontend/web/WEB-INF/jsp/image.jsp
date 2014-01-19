@@ -84,18 +84,20 @@
 					<div name="poi_${ass.pid}" class="poi" onclick="onPOIClick(${ass.pid})">
 						<p><b>POI ${ass.pid}: by ${usersMap.get(ass.point_author.toString())}</b></p>
 					</c:if>
-					<c:set var="votes" value="${ass.votes}" />
-					<% Integer v = (Integer) pageContext.getAttribute("votes");%>
-					<div class="assumption <%=(v > 0) ? "good" : (v < 0) ? "bad" : "controversial"%>">
-						${ass.votes} :: ${ass.label} - ${ass.description} by ${usersMap.get(ass.assumption_author.toString())}
-						<c:forEach var="comm" items="${commentsList}" >
-							<c:if test="${comm.aid == ass.aid}" >
-								<c:set var="vote" value="${comm.vote}" />
-								<% Integer cv = (Integer) pageContext.getAttribute("vote");%>
-								<p class="<%=(cv > 0) ? "upvote" : (cv < 0) ? "downvote" : ""%>" >${usersMap.get(comm.author.toString())}: ${comm.text}</p>
-							</c:if>
-						</c:forEach>
-					</div>
+					<c:if test="${ass.votes != null}" >
+						<c:set var="votes" value="${ass.votes}" />
+						<% Integer v = (Integer) pageContext.getAttribute("votes");%>
+						<div class="assumption <%=(v > 0) ? "good" : (v < 0) ? "bad" : "controversial"%>">
+							${ass.votes} :: ${ass.label} - ${ass.description} by ${usersMap.get(ass.assumption_author.toString())}
+							<c:forEach var="comm" items="${commentsList}" >
+								<c:if test="${comm.aid == ass.aid}" >
+									<c:set var="vote" value="${comm.vote}" />
+									<% Integer cv = (Integer) pageContext.getAttribute("vote");%>
+									<p class="<%=(cv > 0) ? "upvote" : (cv < 0) ? "downvote" : ""%>" >${usersMap.get(comm.author.toString())}: ${comm.text}</p>
+								</c:if>
+							</c:forEach>
+						</div>
+					</c:if>
 					<c:set var="id" value="${ass.pid}" />
 				</c:forEach>
 			</div>
