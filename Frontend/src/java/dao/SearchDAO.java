@@ -30,12 +30,12 @@ public class SearchDAO {
 		String query = "select iid, oid, filename, label, votes, Images.added "
 			+ "from ( "
 			+ "select iid, oid, max(votes) as votes "
-			+ "from Votes left join POI using (pid) "
+			+ "from Votes join POI using (pid) "
 			+ "where oid in ( "
 			+ "select oid from Objects where upper(label) like upper('%" + name + "%') "
 			+ ") "
 			+ "group by iid,oid "
-			+ ") as Results left join Objects using (oid) left join Images using (iid) "
+			+ ") as Results join Objects using (oid) join Images using (iid) "
 			+ "order by label, votes desc";
 
 		List<Search> search = null;
