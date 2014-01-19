@@ -10,14 +10,22 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Panoramix</title>
 		<style type="text/css">
-			.upvote   {color:   green;}
-			.downvote {color:   red;  }
-
 			div               {border: solid black 1px;}
+
 			img.marker        {content:url("gfx/map_pin.png"); position: absolute; width: 20px; height: 20px;}
 			img#active.marker {content:url("gfx/map_pin_sel.png");}
+
 			div.poi           {background: lightgray;}
-			div#active.poi    {background: lightpink;}
+			div#active.poi    {background: lightyellow;}
+
+			.assumption               {opacity:    .6;}
+
+			.assumption.good          {background: lightgreen;}
+			.assumption.bad           {background: lightpink;}
+			.assumption.controversial {background: gray;}
+
+			.assumption .upvote       {color:   green;}
+			.assumption .downvote     {color:   red;  }
 			/*
 			div.poi        {display: none; }
 			div#active.poi {display: block;}
@@ -36,7 +44,6 @@
 	<body>
 		<div name="imageContainer" >
 			<h1>${image.description}</h1>
-			<h2>Click on a pin to see its discussion.</h2>
 			<div style="position: relative">
 				<!-- Wykomentowane rzeczy do wykrywania kliku kliku -->
 				<!-- <form method="POST"> -->
@@ -71,7 +78,9 @@
 					<div name="poi_${ass.pid}" class="poi" onclick="onPOIClick(${ass.pid})">
 						<p><b>POI ${ass.pid}: by ${usersMap.get(ass.point_author.toString())}</b></p>
 					</c:if>
-					<div class="assumption">
+					<c:set var="votes" value="${ass.votes}" />
+					<% Integer v = (Integer) pageContext.getAttribute("votes");%>
+					<div class="assumption <%=(v > 0) ? "good" : (v < 0) ? "bad" : "controversial"%>">
 						${ass.votes} :: ${ass.label} - ${ass.description} by ${usersMap.get(ass.assumption_author.toString())}
 						<c:forEach var="comm" items="${commentsList}" >
 							<c:if test="${comm.aid == ass.aid}" >

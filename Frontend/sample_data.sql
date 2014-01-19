@@ -61,3 +61,4 @@ insert into Comments values(600008, 500006, 100001, 'To jest Błyszcz - Bystra j
 insert into Comments values(600009, 500007, 100004, 'A nie MSW?',                                          CURRENT_TIMESTAMP,  0);
 insert into Comments values(600010, 500007, 100001, 'Nie. Popatrz sobie gdzie jest Koprowy',               CURRENT_TIMESTAMP,  0);
 insert into Comments values(600011, 500007, 100003, 'Tak, to jest Świnica',                                CURRENT_TIMESTAMP, +1);
+insert into Comments values(600012, 500003, 100003, 'Tak, to jest Bystra',                                 CURRENT_TIMESTAMP, +1);
