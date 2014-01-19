@@ -33,6 +33,25 @@ from (
 ) as Results join Objects using (oid) join Images using (iid)
 order by label, votes desc;
 
+-- Users associated with an Image
+select uid, uname from Users where uid in (
+( -- image author
+	select Images.uid      from Images
+	where iid = 300001
+) union ( -- POI authors
+	select POI.uid         from POI
+	where iid = 300001
+) union ( -- assumption authors
+	select Assumptions.uid from POI join Assumptions using (pid)
+	where iid = 300001
+) union ( -- object authors
+	select Objects.uid     from POI join Assumptions using (pid) join Objects  using (oid)
+	where iid = 300001
+) union (
+	select Comments.uid	   from POI join Assumptions using (pid) join Comments using (aid)
+	where iid = 300001
+));
+
 -- Frontpage: 4 newest Images
 -- also: stupid fucking derby I will eat your soul
 select * from (
