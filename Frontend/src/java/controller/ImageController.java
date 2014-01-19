@@ -5,7 +5,7 @@
  */
 package controller;
 
-import bean.Images;
+import bean.ImageInfo;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.validation.BindException;
@@ -30,10 +30,10 @@ public class ImageController extends SimpleFormController {
 	}
 
 	public ImageController() {
-        //Initialize controller properties here or 
+		//Initialize controller properties here or 
 		//in the Web Application Context
 
-		setCommandClass(Images.class);
+		setCommandClass(ImageInfo.class);
 		setCommandName("image");
 		setSuccessView("image");
 		//      setFormView("results");
@@ -44,7 +44,7 @@ public class ImageController extends SimpleFormController {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
-    //Use onSubmit instead of doSubmitAction 
+	//Use onSubmit instead of doSubmitAction 
 	//when you need access to the Request, Response, or BindException objects
 	@Override
 	protected boolean isFormSubmission(HttpServletRequest request) {
@@ -60,10 +60,10 @@ public class ImageController extends SimpleFormController {
 		ModelAndView mv = new ModelAndView(getSuccessView());
 		//Do something...
 
-	//	System.out.println(request.getParameter("img.x") + " " + request.getParameter("img.y") );
+		//	System.out.println(request.getParameter("img.x") + " " + request.getParameter("img.y") );
 		// Powyższa linia pozwala znaleźć klik na obrazku
 		if (command != null) {
-			Images im = (Images) command;
+			ImageInfo im = (ImageInfo) command;
 			int iid = im.getIid();
 			mv.addObject("iid", iid);
 			mv.addObject("image", imageService.getImageById(iid));

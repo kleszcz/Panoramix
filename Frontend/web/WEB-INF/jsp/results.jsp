@@ -8,7 +8,7 @@
 <%@page import="org.springframework.stereotype.Component"%>
 <%@page import="org.springframework.beans.factory.annotation.Value"%>
 <%@page import="java.util.List"%>
-<%@page import="bean.Images"%>
+<%@page import="bean.ImageInfo"%>
 <%@page import="java.awt.Image"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 

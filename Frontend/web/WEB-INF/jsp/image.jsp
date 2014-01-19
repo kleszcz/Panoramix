@@ -16,15 +16,15 @@
         <h1>${image.description}</h1>
         <div style="position: relative">
             <!-- Wykomentowane rzeczy do wykrywania kliku kliku -->
-           <!-- <form method="POST"> -->
+            <!-- <form method="POST"> -->
             <c:forEach var="poi" items="${POIMap}" >
                 <img alt ="" title="${poi.value.label} - ${poi.value.description}" style="position: absolute; top: ${poi.key.y-20}px; left: ${poi.key.x-10}px; width: 20px; height: 20px;" src="gfx/map_pin.png" />
-                
             </c:forEach>        
-        <img alt="${image.filename}" src="images/${image.filename}" />
-          <!--      <input type="image", src="images/${image.filename}", name="img" />
-            </form> -->
+            <img alt="${image.filename}" src="images/${image.filename}" /> <br/>
+              <!--      <input type="image", src="images/${image.filename}", name="img" />
+                </form> -->
+            Photo by: ${image.uname} from ${image.taken_from_label}
         </div>
-        
+
     </body>
 </html>

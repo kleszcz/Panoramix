@@ -11,80 +11,91 @@ import java.sql.Timestamp;
  *
  * @author Jan
  */
-public class Images {
+public class ImageInfo {
 
-    private int iid;
-    private int uid;
-    private String filename;
-    private String description;
-    private Timestamp added;
-    private int taken_from;
+	private int iid;
+	private int uid;
+	private String filename;
+	private String description;
+	private Timestamp added;
+	private String taken_from_label;
+	private String uname;
 
-    public Images() {
-    }
+	public String getUname() {
+		return uname;
+	}
 
-    public Images(
-            int iid,
-            int uid,
-            String filename,
-            String description,
-            Timestamp added,
-            int taken_from
-    ) {
-        this.iid = iid;
-        this.uid =  uid;
-        this.filename =  filename;
-        this.description =  description;
-        this.added =  added;
-        this.taken_from =  taken_from;
-    }
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
 
-    public int getIid() {
-        return iid;
-    }
+	public ImageInfo() {
+	}
 
-    public void setIid(int iid) {
-        this.iid = iid;
-    }
+	public ImageInfo(
+		int iid,
+		int uid,
+		String uname,
+		String filename,
+		String description,
+		Timestamp added,
+		String taken_from_label
+	) {
+		this.iid = iid;
+		this.uid = uid;
+		this.uname = uname;
+		this.filename = filename;
+		this.description = description;
+		this.added = added;
+		this.taken_from_label = taken_from_label;
+	}
 
-    public int getUid() {
-        return uid;
-    }
+	public int getIid() {
+		return iid;
+	}
 
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
+	public void setIid(int iid) {
+		this.iid = iid;
+	}
 
-    public String getFilename() {
-        return filename;
-    }
+	public int getUid() {
+		return uid;
+	}
 
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getFilename() {
+		return filename;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
-    public Timestamp getAdded() {
-        return added;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setAdded(Timestamp added) {
-        this.added = added;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public int getTaken_from() {
-        return taken_from;
-    }
+	public Timestamp getAdded() {
+		return added;
+	}
 
-    public void setTaken_from(int taken_from) {
-        this.taken_from = taken_from;
-    }
+	public void setAdded(Timestamp added) {
+		this.added = added;
+	}
+
+	public String getTaken_from_label() {
+		return taken_from_label;
+	}
+
+	public void setTaken_from_label(String taken_from_label) {
+		this.taken_from_label = taken_from_label;
+	}
 
 }
