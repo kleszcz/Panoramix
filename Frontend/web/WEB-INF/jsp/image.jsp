@@ -69,25 +69,27 @@
             </div>
         </div>
         <div name="commentsContainer">
-
             <c:set var="id" value="${0}" />
             <div style="display: none;" >
                 <c:forEach var="ass" items="${objectsList}" >
-
                     <c:if test="${ass.pid != id}" >
                     </div>
-                    <div name="${ass.pid}" style="display: none;" ><p><b>POI ${ass.pid}: (${ass.x}  ${ass.y}) by ${ass.point_author}</b></p>               </c:if>
-                            <c:set var="votes" value="${ass.votes}" />
-                            <% Integer v = (Integer) pageContext.getAttribute("votes");%>
-                    <p class="<%=(v > 0) ? "upvote" : (v < 0) ? "downvote" : ""%>" >
-                        ${ass.votes} :: ${ass.aid} ${ass.label} - ${ass.description} by ${ass.assumption_author}
-                    </p>
-
+                    <div name="${ass.pid}" style="display: none;" ><p><b>POI ${ass.pid}: (${ass.x}  ${ass.y}) by ${ass.point_author}</b></p>               
+                    </c:if>                            
+                    <div name="assumption">
+                        ${ass.votes} :: ${ass.label} - ${ass.description} by ${ass.assumption_author}
+                        <c:forEach var="comm" items="${commentsList}" >
+                            <c:if test="${comm.aid == ass.aid}" >
+                                <c:set var="vote" value="${comm.vote}" />
+                                <% Integer cv = (Integer) pageContext.getAttribute("vote");%>
+                                <p class="<%=(cv > 0) ? "upvote" : (cv < 0) ? "downvote" : ""%>" >${comm.author}: ${comm.text}</p>
+                            </c:if>
+                        </c:forEach>  
+                    </div>
                     <c:set var="id" value="${ass.pid}" />
                 </c:forEach>
             </div>
 
         </div>
-
     </body>
 </html>
