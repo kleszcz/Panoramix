@@ -32,6 +32,7 @@ insert into POI values(400010, 300004, 100001, 910, 386); -- Kominiarski
 insert into POI values(400011, 300005, 100001, 455, 305); -- Świnica
 insert into POI values(400012, 300005, 100001, 226, 292); -- Kościelec
 insert into POI values(400013, 300005, 100001, 316, 324); -- Niebieska Turnia
+insert into POI values(400014, 300003, 100001, 108, 308); -- Niebieska Turnia.
 
 insert into Assumptions values(500001, 400001, 200001, 100001, CURRENT_TIMESTAMP);
 insert into Assumptions values(500002, 400002, 200002, 100001, CURRENT_TIMESTAMP);
@@ -47,12 +48,16 @@ insert into Assumptions values(500011, 400010, 200007, 100001, CURRENT_TIMESTAMP
 insert into Assumptions values(500012, 400011, 200003, 100001, CURRENT_TIMESTAMP);
 insert into Assumptions values(500013, 400012, 200008, 100001, CURRENT_TIMESTAMP);
 insert into Assumptions values(500014, 400013, 200009, 100001, CURRENT_TIMESTAMP);
+insert into Assumptions values(500015, 400014, 200009, 100001, CURRENT_TIMESTAMP);
 
 insert into Comments values(600001, 500001, 100003, 'Właśnie tak! Widać po Błyszczu.',                     CURRENT_TIMESTAMP, +1);
 insert into Comments values(600002, 500001, 100004, 'Zgadzam się z Tobą, joahumie, po tym właśnie widać.', CURRENT_TIMESTAMP, +1);
 insert into Comments values(600003, 500004, 100004, 'Trudno orzec po tym zdjęciu - jesteś przekonany?.',   CURRENT_TIMESTAMP,  0);
-insert into Comments values(600004, 500004, 100001, 'Tak. Popatrz na grań od Bystrej na dużym zoomie.',    CURRENT_TIMESTAMP, +1);
+insert into Comments values(600004, 500004, 100001, 'Tak. Popatrz na grań od Bystrej na dużym zoomie.',    CURRENT_TIMESTAMP,  0);
 insert into Comments values(600005, 500005, 100003, 'Nie w tę stronę, euzebiuszu.',                        CURRENT_TIMESTAMP, -1);
 insert into Comments values(600006, 500005, 100002, 'Świnica nie leży w Tatrach Zachodnich.',              CURRENT_TIMESTAMP, -1);
 insert into Comments values(600007, 500005, 100001, 'To zdjęcie jest robione ze Świnicy...',               CURRENT_TIMESTAMP, -1);
 insert into Comments values(600008, 500006, 100001, 'To jest Błyszcz - Bystra jest kawałek w lewo...',     CURRENT_TIMESTAMP, -1);
+insert into Comments values(600009, 500007, 100004, 'A nie MSW?',                                          CURRENT_TIMESTAMP,  0);
+insert into Comments values(600010, 500007, 100001, 'Nie. Popatrz sobie gdzie jest Koprowy',               CURRENT_TIMESTAMP,  0);
+insert into Comments values(600011, 500007, 100003, 'Tak, to jest Świnica',                                CURRENT_TIMESTAMP, +1);

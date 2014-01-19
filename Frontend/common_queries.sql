@@ -33,6 +33,16 @@ from (
 ) as Results join Objects using (oid) join Images using (iid)
 order by label, votes desc;
 
+-- search by oid
+select iid, filename, votes, Images.added
+from (
+	select iid, max(votes) as votes
+	from Votes join POI using (pid)
+	where oid = 200001
+	group by iid
+) as Results join Images using (iid)
+order by votes desc, Images.added desc;
+
 -- Users associated with an Image
 select uid, uname from Users where uid in (
 ( -- image author
