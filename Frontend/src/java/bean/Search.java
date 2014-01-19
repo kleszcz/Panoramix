@@ -7,7 +7,6 @@ package bean;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +20,19 @@ public class Search {
 
 	private String label;
 	private int iid;
+	
+	public Search()
+	{
+	}
+
+	public Search(int iid, int oid, String filename, String label, int votes, Timestamp added) {
+		this.iid = iid;
+		this.oid = oid;
+		this.filename = filename;
+		this.label = label;
+		this.votes = votes;
+		this.added = added;		
+	}
 	private int oid;
 	private String filename;
 	private Timestamp added;

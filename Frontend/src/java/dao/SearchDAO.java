@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -40,7 +41,7 @@ public class SearchDAO {
 
 		List<Search> search = null;
 		try {
-			List<Map<String, Object>> result = null;
+/*			List<Map<String, Object>> result = null;
 			result = jdbcTemplate.queryForList(query);//, new Object[] {name});
 			search = new ArrayList<>();
 			for (Map<String, Object> el : result) {
@@ -54,6 +55,8 @@ public class SearchDAO {
 				s.setVotes((int) el.get("votes"));
 				search.add(s);
 			}
+	*/
+			search = jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Search.class));
 		} catch (DataAccessException e) {
 			System.out.println("Couldn't get images for object [" + name + "]");
 			System.out.println(query);
