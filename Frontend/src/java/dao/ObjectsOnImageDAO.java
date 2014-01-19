@@ -29,7 +29,7 @@ public class ObjectsOnImageDAO {
 			+ "	pid, POI.uid as point_author, x, y, "
 			+ "	aid, Votes.uid as assumption_author, votes, Votes.added as added, "
 			+ "	oid, description, label "
-			+ "from  POI join Votes using (pid) join Objects using (oid) "
+			+ "from  POI left join Votes using (pid) left join Objects using (oid) "
 			+ "where iid = ? "
 			+ "order by pid, Votes.votes desc";
 		List<ObjectsOnImage> objects = null;
