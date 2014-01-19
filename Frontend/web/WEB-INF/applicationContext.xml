@@ -32,12 +32,9 @@
     <bean id="commentsDAO" class="dao.CommentsDAO">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    
-    <!--- OLD DAO -->  
-    <bean id="objectsDAO" class="dao.ObjectsDAO">
+    <bean id="usersOnImageDAO" class="dao.UsersOnImageDAO">
         <property name="dataSource" ref="dataSource"/>
-    </bean>
-    <!--- ^^ OLD DAO ^^ -->  
+    </bean> 
   
     <bean name="searchService" class="services.SearchService">
         <property name="searchDAO" ref="searchDAO"/>
@@ -47,6 +44,7 @@
         <property name="imagesDAO" ref="imagesDAO"/>
         <property name="objectsOnImageDAO" ref="objectsOnImageDAO"/>
         <property name="commentsDAO" ref="commentsDAO" />
+        <property name="usersOnImageDAO" ref="usersOnImageDAO" />
     </bean>
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->

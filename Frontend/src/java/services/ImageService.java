@@ -8,9 +8,11 @@ package services;
 import bean.Comments;
 import bean.ImageInfo;
 import bean.ObjectsOnImage;
+import bean.UsersOnImage;
 import dao.CommentsDAO;
 import dao.ImagesDAO;
 import dao.ObjectsOnImageDAO;
+import dao.UsersOnImageDAO;
 import java.util.List;
 
 /**
@@ -22,6 +24,15 @@ public class ImageService {
 	private ImagesDAO imagesDAO;
 	private ObjectsOnImageDAO objectsOnImageDAO;
 	private CommentsDAO commentsDAO;
+	private UsersOnImageDAO usersOnImageDAO;
+
+	public UsersOnImageDAO getUsersOnImageDAO() {
+		return usersOnImageDAO;
+	}
+
+	public void setUsersOnImageDAO(UsersOnImageDAO usersOnImageDAO) {
+		this.usersOnImageDAO = usersOnImageDAO;
+	}
 
 	public CommentsDAO getCommentsDAO() {
 		return commentsDAO;
@@ -54,8 +65,12 @@ public class ImageService {
 	public List<ObjectsOnImage> getObjectsOnImageByIid(int iid) {
 		return objectsOnImageDAO.getByIid(iid);
 	}
-	
+
 	public List<Comments> getCommentsByIid(int iid) {
 		return commentsDAO.getByIid(iid);
+	}
+
+	public List<UsersOnImage> getUsersOnImage(int iid) {
+		return usersOnImageDAO.getByIid(iid);
 	}
 }

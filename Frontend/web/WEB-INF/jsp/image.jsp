@@ -6,6 +6,10 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="usersMap" class="java.util.HashMap" />
+<c:forEach var="u" items="${usersList}">
+    <c:set target="${usersMap}" property="${u.uid}" value="${u.uname}" />
+</c:forEach>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,6 +22,7 @@
 
     </head>
     <body>
+
         <script type="text/javascript">
             sel_poi = null;
             sel_pin = null;
@@ -68,21 +73,23 @@
                 Photo by: ${image.uname} from ${image.taken_from_label}
             </div>
         </div>
+
         <div name="commentsContainer">
             <c:set var="id" value="${0}" />
             <div style="display: none;" >
                 <c:forEach var="ass" items="${objectsList}" >
                     <c:if test="${ass.pid != id}" >
                     </div>
-                    <div name="${ass.pid}" style="display: none;" ><p><b>POI ${ass.pid}: (${ass.x}  ${ass.y}) by ${ass.point_author}</b></p>               
-                    </c:if>                            
+                    <div name="${ass.pid}" style="display: none;" ><p><b>POI ${ass.pid}: (${ass.x}  ${ass.y}) by ${usersMap.get(ass.point_author.toString())}</b></p>               
+                            </c:if>                            
                     <div name="assumption">
-                        ${ass.votes} :: ${ass.label} - ${ass.description} by ${ass.assumption_author}
+                        ${ass.votes} :: ${ass.label} - ${ass.description} by ${usersMap.get(ass.assumption_author.toString())} 
+
                         <c:forEach var="comm" items="${commentsList}" >
                             <c:if test="${comm.aid == ass.aid}" >
                                 <c:set var="vote" value="${comm.vote}" />
                                 <% Integer cv = (Integer) pageContext.getAttribute("vote");%>
-                                <p class="<%=(cv > 0) ? "upvote" : (cv < 0) ? "downvote" : ""%>" >${comm.author}: ${comm.text}</p>
+                                <p class="<%=(cv > 0) ? "upvote" : (cv < 0) ? "downvote" : ""%>" >${usersMap.get(comm.author.toString())}: ${comm.text}</p>
                             </c:if>
                         </c:forEach>  
                     </div>
