@@ -16,9 +16,9 @@
 		<form action="search.htm" method="get" >
 			<a href="index.htm" >Home</a>
 			<a href="search.htm" >Search</a>
-			<span>Name:</span>                
-			<input type="text" name="name" > 
-			<input type="submit" value="Search"> 
+			<span>Name:</span>
+			<input type="text" name="name" >
+			<input type="submit" value="Search">
 
 		</form>
 		<%

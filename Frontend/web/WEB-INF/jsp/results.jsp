@@ -25,7 +25,7 @@
 				<c:forEach var="e" items="${searchList}" >
 					<tr>
 						<td> ${e.label} </td>
-						<td>                      
+						<td>
 							<a href="image.htm?iid=${e.iid}" ><img width="120px" height="90px" src="images/${e.filename}" /></a>
 						</td>
 					</tr>

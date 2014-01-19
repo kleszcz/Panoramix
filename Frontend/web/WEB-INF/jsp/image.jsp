@@ -8,37 +8,32 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>JSP Page</title>
+		<title>Panoramix</title>
 		<style type="text/css">
 			.upvote   {color:   green;}
 			.downvote {color:   red;  }
 
-			.inactive {background: lightgray;}
-			.active   {background: red;}
-			/*.inactive {display: none; }
-			.active   {display: block;}*/
+			div               {border: solid black 1px;}
+			img.marker        {content:url("gfx/map_pin.png"); position: absolute; width: 20px; height: 20px;}
+			img#active.marker {content:url("gfx/map_pin_sel.png");}
+			div.poi           {background: lightgray;}
+			div#active.poi    {background: lightpink;}
+			/*
+			div.poi        {display: none; }
+			div#active.poi {display: block;}
+			*/
 		</style>
-	</head>
-	<body>
 		<script type="text/javascript">
-			sel_poi = null;
-			sel_pin = null;
-			map_pin_sel = new Image(20, 20);
-			map_pin_sel.src = "gfx/map_pin_sel.png";
-			function onPOIClick(pid)
-			{
-				pois = document.getElementsByName("poi_" + pid);
-				pins = document.getElementsByName("pin_" + pid);
-				if (sel_poi)
-					sel_poi.className = 'inactive';
-				if (sel_pin)
-					sel_pin.src = "gfx/map_pin.png";
-				pois[0].className = 'active';
-				pins[0].src = map_pin_sel.src;
-				sel_poi = pois[0];
-				sel_pin = pins[0];
+			sel_poi = sel_pin = null;
+			function onPOIClick(pid) {
+				if(sel_poi) sel_poi.id = '';
+				if(sel_pin) sel_pin.id = '';
+				(sel_poi = document.getElementsByName('poi_' + pid)[0]).id =
+				(sel_pin = document.getElementsByName('pin_' + pid)[0]).id = 'active';
 			}
 		</script>
+	</head>
+	<body>
 		<div name="imageContainer" >
 			<h1>${image.description}</h1>
 			<h2>Click on a pin to see its discussion.</h2>
@@ -50,11 +45,11 @@
 				<c:forEach var="obj" items="${objectsList}" >
 					<c:choose>
 						<c:when test="${obj.pid == pid && obj.votes > last_votes}" >
-							<img name="pin_${obj.pid}" title="${obj.label} - ${obj.description}" style="position: absolute; top: ${obj.y-20}px; left: ${obj.x-10}px; width: 20px; height: 20px;" src="gfx/map_pin.png" onclick="onPOIClick(${obj.pid})"/>
+							<img name="pin_${obj.pid}" title="${obj.label} - ${obj.description}" class="marker" style="top: ${obj.y-20}px; left: ${obj.x-10}px;" onclick="onPOIClick(${obj.pid})"/>
 							<c:set var="last_votes" value="${obj.votes}" />
 						</c:when>
 						<c:when test="${obj.pid != pid}" >
-							<img name="pin_${obj.pid}" title="${obj.label} - ${obj.description}" style="position: absolute; top: ${obj.y-20}px; left: ${obj.x-10}px; width: 20px; height: 20px;" src="gfx/map_pin.png" onclick="onPOIClick(${obj.pid})"/>
+							<img name="pin_${obj.pid}" title="${obj.label} - ${obj.description}" class="marker" style="top: ${obj.y-20}px; left: ${obj.x-10}px;" onclick="onPOIClick(${obj.pid})"/>
 							<c:set var="pid" value="${obj.pid}"/>
 							<c:set var="last_votes" value="${obj.votes}" />
 						</c:when>
@@ -73,10 +68,10 @@
 				<c:forEach var="ass" items="${objectsList}" >
 					<c:if test="${ass.pid != id}" >
 					</div>
-					<div name="poi_${ass.pid}" class="inactive" onclick="onPOIClick(${ass.pid})">
-						<p><b>POI ${ass.pid}: (${ass.x}  ${ass.y}) by ${usersMap.get(ass.point_author.toString())}</b></p>
+					<div name="poi_${ass.pid}" class="poi" onclick="onPOIClick(${ass.pid})">
+						<p><b>POI ${ass.pid}: by ${usersMap.get(ass.point_author.toString())}</b></p>
 					</c:if>
-					<div name="assumption">
+					<div class="assumption">
 						${ass.votes} :: ${ass.label} - ${ass.description} by ${usersMap.get(ass.assumption_author.toString())}
 						<c:forEach var="comm" items="${commentsList}" >
 							<c:if test="${comm.aid == ass.aid}" >
