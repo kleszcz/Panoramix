@@ -11,7 +11,8 @@ select
 	aid, Votes.uid as assumption_author, votes, Votes.added as added,
 	oid, description, label
 from  POI join Votes using (pid) join Objects using (oid)
-where iid = 300001;
+where iid = 300002 
+order by pid, Votes.votes desc;
 
 -- all Comments on an Image
 select
