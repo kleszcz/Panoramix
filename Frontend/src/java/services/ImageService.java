@@ -6,12 +6,12 @@
 package services;
 
 import bean.ImageInfo;
-import bean.Objects;
+import bean.ObjectsOnImage;
 import bean.POI;
 import dao.ImagesDAO;
+import dao.ObjectsOnImageDAO;
 import dao.POIDAO;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -20,7 +20,16 @@ import java.util.Map;
 public class ImageService {
 
 	private ImagesDAO imagesDAO;
-	private POIDAO poiDAO;
+	private POIDAO poiDAO; //TODO get rid of it
+	private ObjectsOnImageDAO objectsOnImageDAO;
+
+	public ObjectsOnImageDAO getObjectsOnImageDAO() {
+		return objectsOnImageDAO;
+	}
+
+	public void setObjectsOnImageDAO(ObjectsOnImageDAO objectsOnImageDAO) {
+		this.objectsOnImageDAO = objectsOnImageDAO;
+	}
 
 	public POIDAO getPoiDAO() {
 		return poiDAO;
@@ -46,7 +55,7 @@ public class ImageService {
 		return poiDAO.getPOIsByIid(iid);
 	}
 
-	public Map<POI, Objects> getPOIToObjectsMapByIid(int iid) {
-		return poiDAO.getPOIToObjectsMapByIid(iid);
+	public List<ObjectsOnImage> getObjectsOnImageByIid(int iid) {
+		return objectsOnImageDAO.getByIid(iid);
 	}
 }

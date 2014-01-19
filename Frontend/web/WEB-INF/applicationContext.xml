@@ -26,20 +26,27 @@
     <bean id="imagesDAO" class="dao.ImagesDAO">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+    <bean id="objectsOnImageDAO" class="dao.ObjectsOnImageDAO">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <!--- OLD DAO -->  
     <bean id="poiDAO" class="dao.POIDAO">
         <property name="dataSource" ref="dataSource"/>
     </bean>
     <bean id="objectsDAO" class="dao.ObjectsDAO">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    
+    <!--- ^^ OLD DAO ^^ -->  
+  
     <bean name="searchService" class="services.SearchService">
         <property name="searchDAO" ref="searchDAO"/>
     </bean>
     
     <bean name="imageService" class="services.ImageService">
         <property name="imagesDAO" ref="imagesDAO"/>
-        <property name="poiDAO" ref="poiDAO"/>
+        <property name="objectsOnImageDAO" ref="objectsOnImageDAO"/>
+        <property name="poiDAO" ref="poiDAO"/> <!-- TODO Get rid of it -->
     </bean>
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->

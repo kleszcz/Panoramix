@@ -58,8 +58,6 @@ public class ImageController extends SimpleFormController {
 		Object command,
 		BindException errors) throws Exception {
 		ModelAndView mv = new ModelAndView(getSuccessView());
-		//Do something...
-
 		//	System.out.println(request.getParameter("img.x") + " " + request.getParameter("img.y") );
 		// Powyższa linia pozwala znaleźć klik na obrazku
 		if (command != null) {
@@ -67,8 +65,7 @@ public class ImageController extends SimpleFormController {
 			int iid = im.getIid();
 			mv.addObject("iid", iid);
 			mv.addObject("image", imageService.getImageById(iid));
-			mv.addObject("POIList", imageService.getPOIByIid(iid));
-			mv.addObject("POIMap", imageService.getPOIToObjectsMapByIid(iid));
+			mv.addObject("objectsList", imageService.getObjectsOnImageByIid(iid));
 		} else {
 			System.out.println("[ERROR] Empty command!");
 		}
