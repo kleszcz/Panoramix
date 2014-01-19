@@ -1,3 +1,5 @@
+drop view  Votes;
+
 drop table Comments;
 drop table Assumptions;
 drop table POI;
@@ -57,3 +59,9 @@ create table Comments (
 	added timestamp     not null,
 	vote  int           not null -- FIXME: constraint to {-1,0,+1}
 );
+
+create view Votes as
+select
+	A.*,
+	(select coalesce(sum(vote),0) from Comments as C where C.aid = A.aid) as votes
+from Assumptions as A;
