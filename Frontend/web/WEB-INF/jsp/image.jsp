@@ -1,11 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- FIXME: fix votes if already voted -->
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Panoramix</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/jquery.js"></script>
 		<script type="text/javascript">
 			sel_poi = sel_pin = null;
 			function onPOIClick(pid) {
@@ -17,8 +19,30 @@
 			}
 			function onCommentClick(aid) {
 				document.getElementsByName('commentbox_' + aid)[0].style.display = 'block';
-				document.getElementsByName('commentbtn_' + aid)[0].style.display = 'none';
+				window.event.target.style.display = 'none';
 			}
+			<c:if test="${uname != null}">
+			function onImgClick() {
+				e = window.event;
+				$("#newmarker").remove();
+				if (e.button === 0) {
+					x = e.offsetX / $("#img").width();
+					y = e.offsetY / $("#img").height();
+					s = $('<img class="marker" id="newmarker" style="top: ' + y*100 + '%; left: ' + x*100 + '%;"/>');
+					s.id = 'newmarker';
+					$("#img").append(s);
+					$("#poiform").show();
+					$('#poiform form input[name="x"]').val(x);
+					$('#poiform form input[name="y"]').val(y);
+				} else {
+					$("#poiform").hide();
+				}
+			}
+
+			$(document).ready(function() {
+				$("#img").click(onImgClick);
+			});
+			</c:if>
 		</script>
 	</head>
 	<body>
@@ -26,8 +50,6 @@
 			<div id="imageContainer">
 				<h1>${image.description}</h1>
 				<div id="img" style="position: relative; display: inline-block;">
-					<!-- Wykomentowane rzeczy do wykrywania kliku kliku -->
-					<!-- <form method="POST"> -->
 					<c:set var="pid" value="${0}" />
 					<c:set var="last_votes" value="${0}" />
 					<c:forEach var="obj" items="${objectsList}" >
@@ -43,21 +65,43 @@
 							</c:when>
 						</c:choose>
 					</c:forEach>
-					<img alt="${image.filename}" src="images/${image.filename}" id="picture"/>
+					<img alt="${image.filename}" src="images/${image.filename}" id="picture" />
 				</div>
 				<br/>
-				<!--<input type="image", src="images/${image.filename}", name="img" />
-				</form>-->
-				Photo by: ${image.uname} <c:if test="${image.taken_from_label != null}"> taken from ${image.taken_from_label}</c:if>
-				</div>
-				<div id="commentsContainer">
+				Photo by ${image.uname}<c:if test="${image.taken_from_label != null}">, taken from ${image.taken_from_label}</c:if>
+				<c:if test="${uname != null}">
+					<div id="poiform" style="display: none;">
+						<form method="post" action="addpoi.do">
+							<input type="hidden" name="x" />
+							<input type="hidden" name="y" />
+							<input type="hidden" name="iid" value="${image.iid}" />
+							<input type="submit" value="add POI"/>
+						</form>
+					</div>
+				</c:if>
+			</div>
+			<div id="commentsContainer">
 				<c:set var="id" value="${0}" />
 				<div id="sentinel__man_this_is_fucky" style="display: none;" >
 					<c:forEach var="ass" items="${objectsList}" >
 						<c:if test="${ass.pid != id}" >
 						</div>
+						<hr/>
 						<div name="poi_${ass.pid}" class="poi" onclick="onPOIClick(${ass.pid})">
-							<p><b>POI ${ass.pid}: by ${usersMap.get(ass.point_author)}</b></p>
+							<p>POI added by ${usersMap.get(ass.point_author)}.</p>
+							<c:if test="${uname != null}">
+								<div id="assform" style="display: inline;">
+									<form method="post" action="addassumption.do" style="display: inline;">
+										<input type="hidden" name="pid" value="${ass.pid}" />
+										<input type="submit" value="add assumption:"/>
+									</form>
+									<select name="oid" form="assform_${ass.aid}" style="display: inline;">
+										<c:forEach var="object" items="${objects}" >
+											<option value="${object.oid}">${object.label}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</c:if>
 						</c:if>
 						<c:if test="${ass.votes != null}" >
 							<c:set var="votes" value="${ass.votes}" />
@@ -72,7 +116,7 @@
 									</c:if>
 								</c:forEach>
 								<c:if test="${uname != null}">
-									<button name="commentbtn_${ass.aid}" onclick="onCommentClick(${ass.aid})">comment</button>
+									<button onclick="onCommentClick(${ass.aid})">comment</button>
 									<div class="commentbox" style="display: none;" name="commentbox_${ass.aid}" onclick="onPOIClick(${ass.aid})">
 										<select name="vote" form="commform_${ass.aid}">
 											<option value="1">upvote</option>
@@ -87,9 +131,9 @@
 										</form>
 									</div>
 								</c:if>
-								</div>
-							</c:if>
-							<c:set var="id" value="${ass.pid}" />
+							</div>
+						</c:if>
+						<c:set var="id" value="${ass.pid}" />
 					</c:forEach>
 				</div>
 			</div>

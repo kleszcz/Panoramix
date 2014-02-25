@@ -100,6 +100,7 @@ public class ImageService {
 		mv.addObject("iid", iid);
 		mv.addObject("image", getImageById(iid));
 		mv.addObject("usersMap", getUidMapForIid(iid));
+		mv.addObject("objects", getAllObjects());
 
 		mv.addObject("objectsList", getObjectsOnImageByIid(iid));
 		mv.addObject("commentsList", getCommentsByIid(iid));

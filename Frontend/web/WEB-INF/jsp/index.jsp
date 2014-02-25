@@ -11,7 +11,6 @@
 		<div id="content">
 			<c:forEach var="img" items="${images}" >
 				<a name="${img.getIid()}" href="image.do?iid=${img.getIid()}"><img class="thumb" src="images/${img.getFilename()}"></a>
-				<!--%= ((i % 4) == 3) ? "<br/>" : ""%-->
 			</c:forEach>
 			<c:if test="${uname != null}">
 				<div id="upload_image">

@@ -2,11 +2,20 @@ package bean;
 
 public class ObjectInfo {
 
+	Integer oid;
 	Integer uid;
 	String label;
 	String description;
 	Float latitude;
 	Float longitude;
+
+	public Integer getOid() {
+		return oid;
+	}
+
+	public void setOid(Integer oid) {
+		this.oid = oid;
+	}
 
 	public Integer getUid() {
 		return uid;

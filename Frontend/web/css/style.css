@@ -51,7 +51,8 @@ img.marker {
 	transform:translate(-50%, -100%);
 }
 
-img#active.marker {content:url("../gfx/map_pin_sel.png");}
+img#active.marker    {content:url("../gfx/map_pin_sel.png");}
+img#newmarker.marker {content:url("../gfx/map_pin_new.png");}
 
 div.poi           {background: lightgray;}
 div#active.poi    {background: lightyellow;}
