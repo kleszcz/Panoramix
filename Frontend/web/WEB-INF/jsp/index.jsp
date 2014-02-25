@@ -10,25 +10,27 @@
 	<body>
 		<div id="content">
 			<c:forEach var="img" items="${images}" >
-			<a name="${img.getIid()}" href="image.do?iid=${img.getIid()}"><img class="thumb" src="images/${img.getFilename()}"></a>
+				<a name="${img.getIid()}" href="image.do?iid=${img.getIid()}"><img class="thumb" src="images/${img.getFilename()}"></a>
 				<!--%= ((i % 4) == 3) ? "<br/>" : ""%-->
 			</c:forEach>
-			<div id="upload_image">
-				<form method="post" action="upload.do">
-					<input type="file" name="image" />
-					<input type="text" name="description" />
-					<input type="submit" value="Add image" />
-				</form>
-			</div>
-			<div id="add_object">
-				<form method="post" action="addobject.do">
-					<input type="text" placeholder="label"       name="label" />
-					<input type="text" placeholder="lat"         name="lat" />
-					<input type="text" placeholder="long"        name="long" />
-					<input type="text" placeholder="description" name="description" />
-					<input type="submit" value="Add Object" />
-				</form>
-			</div>
+			<c:if test="${uname != null}">
+				<div id="upload_image">
+					<form method="post" action="upload.do">
+						<input type="file" name="image" />
+						<input type="text" name="description" />
+						<input type="submit" value="Add image" />
+					</form>
+				</div>
+				<div id="add_object">
+					<form method="post" action="addobject.do">
+						<input type="text" placeholder="label"       name="label" />
+						<input type="text" placeholder="lat"         name="lat" />
+						<input type="text" placeholder="long"        name="long" />
+						<input type="text" placeholder="description" name="description" />
+						<input type="submit" value="Add Object" />
+					</form>
+				</div>
+			</c:if>
 		</div>
 		<%@include file="header.jsp"%>
 	</body>

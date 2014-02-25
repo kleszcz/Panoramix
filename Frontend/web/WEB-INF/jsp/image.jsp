@@ -49,8 +49,8 @@
 				<!--<input type="image", src="images/${image.filename}", name="img" />
 				</form>-->
 				Photo by: ${image.uname} <c:if test="${image.taken_from_label != null}"> taken from ${image.taken_from_label}</c:if>
-			</div>
-			<div id="commentsContainer">
+				</div>
+				<div id="commentsContainer">
 				<c:set var="id" value="${0}" />
 				<div id="sentinel__man_this_is_fucky" style="display: none;" >
 					<c:forEach var="ass" items="${objectsList}" >
@@ -71,23 +71,25 @@
 										<p class="<%=(cv > 0) ? "upvote" : (cv < 0) ? "downvote" : ""%>" >${usersMap.get(comm.author)}: ${comm.text}</p>
 									</c:if>
 								</c:forEach>
-								<button name="commentbtn_${ass.aid}" onclick="onCommentClick(${ass.aid})">comment</button>
-								<div class="commentbox" style="display: none;" name="commentbox_${ass.aid}" onclick="onPOIClick(${ass.aid})">
-									<select name="vote" form="commform_${ass.aid}">
-										<option value="1">upvote</option>
-										<option value="0" selected="selected">neutral</option>
-										<option value="-1">downvote</option>
-									</select>
-									<form action="addcomment.do" method="post" id="commform_${ass.aid}">
-										<textarea name="text" rows="20" cols="80"></textarea>
-										<input type="hidden" name="aid" value="${ass.aid}"/>
-										<br/>
-										<input type="submit" value="Comment"/>
-									</form>
+								<c:if test="${uname != null}">
+									<button name="commentbtn_${ass.aid}" onclick="onCommentClick(${ass.aid})">comment</button>
+									<div class="commentbox" style="display: none;" name="commentbox_${ass.aid}" onclick="onPOIClick(${ass.aid})">
+										<select name="vote" form="commform_${ass.aid}">
+											<option value="1">upvote</option>
+											<option value="0" selected="selected">neutral</option>
+											<option value="-1">downvote</option>
+										</select>
+										<form action="addcomment.do" method="post" id="commform_${ass.aid}">
+											<textarea name="text" rows="20" cols="80"></textarea>
+											<input type="hidden" name="aid" value="${ass.aid}"/>
+											<br/>
+											<input type="submit" value="Comment"/>
+										</form>
+									</div>
+								</c:if>
 								</div>
-							</div>
-						</c:if>
-						<c:set var="id" value="${ass.pid}" />
+							</c:if>
+							<c:set var="id" value="${ass.pid}" />
 					</c:forEach>
 				</div>
 			</div>
