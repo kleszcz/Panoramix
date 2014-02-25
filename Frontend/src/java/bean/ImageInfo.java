@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bean;
 
 import java.sql.Timestamp;
 
-/**
- *
- * @author Jan
- */
 public class ImageInfo {
 
 	private Integer iid;
@@ -21,25 +12,17 @@ public class ImageInfo {
 	private String taken_from_label;
 	private String uname;
 
-	public String getUname() {
-		return uname;
-	}
-
-	public void setUname(String uname) {
-		this.uname = uname;
-	}
-
 	public ImageInfo() {
 	}
 
 	public ImageInfo(
-		Integer iid,
-		Integer uid,
-		String uname,
-		String filename,
-		String description,
-		Timestamp added,
-		String taken_from_label
+			Integer iid,
+			Integer uid,
+			String uname,
+			String filename,
+			String description,
+			Timestamp added,
+			String taken_from_label
 	) {
 		this.iid = iid;
 		this.uid = uid;
@@ -98,4 +81,11 @@ public class ImageInfo {
 		this.taken_from_label = taken_from_label;
 	}
 
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
 }

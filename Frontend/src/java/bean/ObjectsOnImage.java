@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bean;
 
 import java.sql.Timestamp;
 
-/**
- *
- * @author Jan
- */
 public class ObjectsOnImage {
 
 	private Integer pid;
@@ -24,10 +15,6 @@ public class ObjectsOnImage {
 	private Integer oid;
 	private String description;
 	private String label;
-
-	public Integer getPid() {
-		return pid;
-	}
 
 	public ObjectsOnImage() {
 	}
@@ -44,6 +31,10 @@ public class ObjectsOnImage {
 		this.oid = oid;
 		this.description = description;
 		this.label = label;
+	}
+
+	public Integer getPid() {
+		return pid;
 	}
 
 	public void setPid(Integer pid) {

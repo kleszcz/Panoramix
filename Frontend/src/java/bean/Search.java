@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bean;
 
 import java.io.UnsupportedEncodingException;
@@ -10,16 +5,14 @@ import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Jan
- */
 public class Search {
 
 	private String name;
-
 	private String label;
 	private Integer iid;
+	private Integer oid;
+	private String filename;
+	private Timestamp added;
 
 	public Search() {
 	}
@@ -32,9 +25,6 @@ public class Search {
 		this.votes = votes;
 		this.added = added;
 	}
-	private Integer oid;
-	private String filename;
-	private Timestamp added;
 
 	public String getLabel() {
 		return label;
@@ -90,6 +80,7 @@ public class Search {
 	}
 
 	public void setName(String name) {
+		//FIXME: WTFF
 		try {
 			this.name = new String(name.getBytes("iso-8859-1"), "UTF-8");
 		} catch (UnsupportedEncodingException ex) {

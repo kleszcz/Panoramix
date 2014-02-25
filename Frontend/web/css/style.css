@@ -1,0 +1,67 @@
+.header {
+	position: fixed;
+	top:      0px;
+	left:     0px;
+	width:    100%;
+	height:   35px;
+
+	background: #202020;
+	color:      #FDFDFD;
+	display: table;
+
+
+	vertical-align: middle;
+	font-family: arial, sans-serif;
+	font-size: small;
+	font-weight: bolder;
+}
+
+.header div {
+	display: table-cell;
+	text-align: center;
+}
+
+.header .right {text-align:right;}
+.header .left  {text-align:left;}
+
+.header form {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.header a:visited,.header a:link {color:  #FDFDFD;}
+.header a:hover                  {color: #33CCFF;}
+
+.error {color: red;}
+
+#content {
+	position: absolute;
+	top:      35px;
+	left:      0px;
+	width:   100%;
+}
+
+img#picture  {width: 600px;}
+img.thumb    {width: 200px;}
+img.marker {
+	content:url("../gfx/map_pin.png");
+	position: absolute;
+	-webkit-transform:translate(-50%, -100%); /*FIXME: FUGLY*/
+	transform:translate(-50%, -100%);
+}
+
+img#active.marker {content:url("../gfx/map_pin_sel.png");}
+/*
+div.poi           {background: lightgray;}
+div#active.poi    {background: lightyellow;}
+*/
+.assumption               {opacity:    .6;}
+
+.assumption.good          {background: lightgreen;}
+.assumption.bad           {background: lightpink;}
+.assumption.controversial {background: gray;}
+
+.assumption .upvote       {color:   green;}
+.assumption .downvote     {color:   red;  }
+
+div.poi        {display: none; }
+div#active.poi {display: block;}

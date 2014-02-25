@@ -1,83 +1,35 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Panoramix</title>
-		<style type="text/css">
-			.upvote   {color: green;}
-			.downvote {color: red;}
-		</style>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
-
-
-		<form action="search.htm" method="get" >
-			<a href="index.htm" >Home</a>
-			<a href="search.htm" >Search</a>
-			<span>Name:</span>
-			<input type="text" name="name" >
-			<input type="submit" value="Search">
-
-		</form>
-		<%
-			try {
-				// THE BEST KIND OF PASSWORDS? HARDCODED PASSWORDS!
-				java.sql.Connection connection = java.sql.DriverManager.getConnection(
-						"jdbc:derby://localhost:1527/Panoramix",
-						"panoramix",
-						"panoramix"
-				);
-				java.sql.ResultSet images = connection.createStatement().executeQuery(
-						"select * from Images"
-				);
-
-				while (images.next()) {
-					int iid = images.getInt("iid");
-		%>
-		<hr>
-		<a name="<%=iid%>"><img alt="panorama" src="images/<%=images.getString("filename")%>"></a>
-		<ul>
-			<%
-				java.sql.ResultSet POI = connection.createStatement().executeQuery(
-						"select * from POI where iid = " + iid
-				);
-				while (POI.next()) {%>
-			<li>
-				<p>(<%=POI.getInt("x")%>, <%=POI.getInt("y")%>)</p>
-				<%
-					java.sql.ResultSet assumptions = connection.createStatement().executeQuery(
-							"select * from (select A.*,"
-							+ " (select coalesce(sum(vote),0) from Comments as C where C.aid = A.aid) as votes"
-							+ " from Assumptions as A where pid = " + POI.getInt("pid") + ") as AV"
-							+ " left join Objects using (oid)"
-							+ " order by votes desc, AV.added"
-					);
-					while (assumptions.next()) {%>
-				<b><%=assumptions.getString("label")%></b> (ocena: <%=assumptions.getInt("votes")%>): <%=assumptions.getString("description")%>
-
-				<ul>
-					<%
-						java.sql.ResultSet comments = connection.createStatement().executeQuery(
-								"select * from Comments join Users using (uid) where aid = " + assumptions.getInt("aid") + " order by added"
-						);
-
-						while (comments.next()) {
-							int v = comments.getInt("vote");%>
-					<li class="<%=(v > 0) ? "upvote" : (v < 0) ? "downvote" : ""%>"><b><%=comments.getString("uname")%></b>: <%=comments.getString("text")%></li>
-							<%}%>
-				</ul>
-				<%}%>
-
-			</li>
-			<%}%>
-		</ul>
-		<%}%>
-		<%} catch (Exception e) {%>
-
-		<h1> <%=e%> </h1>
-
-		<%}%>
+		<div id="content">
+			<c:forEach var="img" items="${images}" >
+			<a name="${img.getIid()}" href="image.do?iid=${img.getIid()}"><img class="thumb" src="images/${img.getFilename()}"></a>
+				<!--%= ((i % 4) == 3) ? "<br/>" : ""%-->
+			</c:forEach>
+			<div id="upload_image">
+				<form method="post" action="upload.do">
+					<input type="file" name="image" />
+					<input type="text" name="description" />
+					<input type="submit" value="Add image" />
+				</form>
+			</div>
+			<div id="add_object">
+				<form method="post" action="addobject.do">
+					<input type="text" placeholder="label"       name="label" />
+					<input type="text" placeholder="lat"         name="lat" />
+					<input type="text" placeholder="long"        name="long" />
+					<input type="text" placeholder="description" name="description" />
+					<input type="submit" value="Add Object" />
+				</form>
+			</div>
+		</div>
+		<%@include file="header.jsp"%>
 	</body>
 </html>

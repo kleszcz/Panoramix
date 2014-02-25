@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
-import services.SearchService;
+import service.SearchService;
 
 /**
  *
@@ -31,20 +31,12 @@ public class SearchController extends SimpleFormController {
 	}
 
 	public SearchController() {
-		//Initialize controller properties here or 
-		//in the Web Application Context
-
 		setCommandClass(Search.class);
 		setCommandName("search");
 		setSuccessView("results");
-		//	setFormView("search");
 	}
 
-	@Override
-	protected void doSubmitAction(Object command) throws Exception {
-		throw new UnsupportedOperationException("Not yet implemented");
-	}
-
+	//FIXME: why
 	@Override
 	protected boolean isFormSubmission(HttpServletRequest request) {
 		if (request.getParameter("name") == null) {
@@ -53,27 +45,13 @@ public class SearchController extends SimpleFormController {
 		return true;
 	}
 
-	//Use onSubmit instead of doSubmitAction 
-	//when you need access to the Request, Response, or BindException objects
 	@Override
-	protected ModelAndView onSubmit(
-		HttpServletRequest request,
-		HttpServletResponse response,
-		Object command,
-		BindException errors) throws Exception {
+	protected ModelAndView onSubmit(Object command, BindException errors) throws Exception {
 		ModelAndView mv = new ModelAndView(getSuccessView());
-		//Do something...
 		Search search = (Search) command;
 		Object list = searchService.getSearchByName(search.getName());
 
-		if (((List<Search>) list).isEmpty()) {
-			System.out.println("No list");
-			mv.addObject("noResults", true);
-		} else {
-			System.out.println("List size=" + ((List<Search>) list).size());
-			mv.addObject("noResults", false);
-			mv.addObject("searchList", list);
-		}
+		mv.addObject("searchList", list);
 		mv.addObject("searchName", search.getName());
 		return mv;
 	}

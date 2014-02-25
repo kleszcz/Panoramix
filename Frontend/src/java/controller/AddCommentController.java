@@ -1,16 +1,17 @@
 package controller;
 
-import bean.ImageInfo;
+import bean.Comment;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import service.ImageService;
 
-public class ImageController extends SimpleFormController {
+public class AddCommentController extends SimpleFormController {
 
-	private ImageService imageService;
+	ImageService imageService;
 
 	public ImageService getImageService() {
 		return imageService;
@@ -20,25 +21,27 @@ public class ImageController extends SimpleFormController {
 		this.imageService = imageService;
 	}
 
-	public ImageController() {
-		setCommandClass(ImageInfo.class);
-		setCommandName("image");
+	public AddCommentController() {
+		setCommandClass(Comment.class);
+		setCommandName("comment");
 		setSuccessView("image");
-		//      setFormView("results");
-	}
-
-	//FIXME: why?
-	@Override
-	protected boolean isFormSubmission(HttpServletRequest request) {
-		return true;
+		setFormView("image");
 	}
 
 	@Override
 	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
-		ModelAndView mv = new ModelAndView(getSuccessView());
-		//	System.out.println(request.getParameter("img.x") + " " + request.getParameter("img.y") );
-		// Powyższa linia pozwala znaleźć klik na obrazku
-		imageService.addImageInfo(mv, ((ImageInfo)command).getIid());
+		Comment comment = (Comment) command;
+		ModelAndView mv = null;
+		Integer uid;
+		HttpSession session = request.getSession(false);
+		if(session != null && (uid = (Integer) session.getAttribute("uid")) != null) {
+			comment.setAuthor(uid);
+			imageService.addComment(comment);
+			response.sendRedirect(request.getHeader("referer"));
+		} else {
+			response.sendRedirect(request.getHeader("referer"));
+		}
+
 		return mv;
 	}
 }
