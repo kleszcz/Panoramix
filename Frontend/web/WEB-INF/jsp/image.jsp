@@ -15,6 +15,10 @@
 					sel_pin.id = '';
 				(sel_poi = document.getElementsByName('poi_' + pid)[0]).id = (sel_pin = document.getElementsByName('pin_' + pid)[0]).id = 'active';
 			}
+			function onCommentClick(aid) {
+				document.getElementsByName('commentbox_' + aid)[0].style.display = 'block';
+				document.getElementsByName('commentbtn_' + aid)[0].style.display = 'none';
+			}
 		</script>
 	</head>
 	<body>
@@ -44,7 +48,7 @@
 				<br/>
 				<!--<input type="image", src="images/${image.filename}", name="img" />
 				</form>-->
-				Photo by: ${image.uname} from ${image.taken_from_label}
+				Photo by: ${image.uname} <c:if test="${image.taken_from_label != null}"> taken from ${image.taken_from_label}</c:if>
 			</div>
 			<div id="commentsContainer">
 				<c:set var="id" value="${0}" />
@@ -67,11 +71,12 @@
 										<p class="<%=(cv > 0) ? "upvote" : (cv < 0) ? "downvote" : ""%>" >${usersMap.get(comm.author)}: ${comm.text}</p>
 									</c:if>
 								</c:forEach>
-								<div class="commentbox">
+								<button name="commentbtn_${ass.aid}" onclick="onCommentClick(${ass.aid})">comment</button>
+								<div class="commentbox" style="display: none;" name="commentbox_${ass.aid}" onclick="onPOIClick(${ass.aid})">
 									<select name="vote" form="commform_${ass.aid}">
-										<option value="-1">downvote</option>
-										<option value="0" selected="selected">neutral</option>
 										<option value="1">upvote</option>
+										<option value="0" selected="selected">neutral</option>
+										<option value="-1">downvote</option>
 									</select>
 									<form action="addcomment.do" method="post" id="commform_${ass.aid}">
 										<textarea name="text" rows="20" cols="80"></textarea>

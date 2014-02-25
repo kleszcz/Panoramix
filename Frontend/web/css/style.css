@@ -50,10 +50,10 @@ img.marker {
 }
 
 img#active.marker {content:url("../gfx/map_pin_sel.png");}
-/*
+
 div.poi           {background: lightgray;}
 div#active.poi    {background: lightyellow;}
-*/
+
 .assumption               {opacity:    .6;}
 
 .assumption.good          {background: lightgreen;}
@@ -62,6 +62,7 @@ div#active.poi    {background: lightyellow;}
 
 .assumption .upvote       {color:   green;}
 .assumption .downvote     {color:   red;  }
-
+/*
 div.poi        {display: none; }
 div#active.poi {display: block;}
+*/
