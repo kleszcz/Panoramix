@@ -33,8 +33,10 @@ public class RegisterController extends SimpleFormController {
 		ModelAndView mv = new ModelAndView(getSuccessView());
 		try {
 			loginService.addUser(user);
+			user = loginService.getUser(user);
 			request.getSession(true).setAttribute("uid", user.getUid());
 			request.getSession(true).setAttribute("uname", user.getUname());
+			response.sendRedirect(request.getContextPath());
 		} catch(Exception e) {
 			mv.addObject("welcomeMessage", "registration failure");
 		}
