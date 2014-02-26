@@ -27,7 +27,7 @@ public class UploadController extends SimpleFormController {
 		setCommandClass(ImageUpload.class);
 		setCommandName("imageUpload");
 		setSuccessView("image");
-		setFormView("upload");
+		setFormView("uploader");
 	}
 
 	@Override
@@ -38,13 +38,10 @@ public class UploadController extends SimpleFormController {
 		Logger.getLogger("debug").severe(errors.getMessage().toString());
 		Logger.getLogger("debug").severe("" + iu.getImage() + iu.getDescription() + iu.getName() + iu.getTakenFrom());
 		ModelAndView mv;
-		//try {
-		//mv = new ModelAndView(getSuccessView());
-		//int iid = imageService.saveImage((ImageUpload) command);
-		//imageService.addImageInfo(mv, iid);
-		/*} catch (Exception e) {
-		 mv = new ModelAndView(getFormView());
-		 }*/
+
+		mv = new ModelAndView(getSuccessView());
+		int iid = imageService.saveImage((ImageUpload) command, request.getServletContext());
+		imageService.addImageInfo(mv, iid);
 
 		return null;
 	}

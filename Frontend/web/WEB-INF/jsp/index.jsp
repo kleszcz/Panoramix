@@ -14,7 +14,7 @@
 			</c:forEach>
 			<c:if test="${uname != null}">
 				<div id="upload_image">
-					<form method="post" action="upload.do">
+					<form method="post" enctype="multipart/form-data" action="upload.do">
 						<input type="file" name="image" />
 						<input type="text" name="description" />
 						<input type="submit" value="Add image" />

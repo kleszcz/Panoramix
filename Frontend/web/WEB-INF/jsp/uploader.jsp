@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 	<head>
@@ -7,6 +8,7 @@
 	<body>
 		<form:form method="post" enctype="multipart/form-data" modelAttribute="imageUpload" action="upload.do">
 			<input type="file" name="image" />
+			<input type="text" name="description" />
 			<input type="submit" value="Upload" />
 		</form:form>
 	</body>

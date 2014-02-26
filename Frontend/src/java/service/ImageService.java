@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.UUID;
+import javax.servlet.ServletContext;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -113,11 +114,11 @@ public class ImageService {
 		return objectsDAO.getAllObjects();
 	}
 
-	public int saveImage(ImageUpload iu) throws Exception {
-		/*MultipartFile image = iu.getImage();
-		 String filename = "images/" + UUID.randomUUID().toString();
-		 image.transferTo(new File(filename));*/
-		throw new Exception("" + iu.getImage() + iu.getDescription() + iu.getName() + iu.getTakenFrom());
-		//return 5;
+	public int saveImage(ImageUpload iu, ServletContext sc) throws Exception {
+		MultipartFile image = iu.getImage();
+		String filename = UUID.randomUUID().toString();
+		String path = sc.getRealPath("/images") + "/" + filename;
+		image.transferTo(new File(path));
+		return 5;
 	}
 }
