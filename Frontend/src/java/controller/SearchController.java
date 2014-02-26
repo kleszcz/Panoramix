@@ -5,7 +5,7 @@
  */
 package controller;
 
-import bean.Search;
+import bean.SearchResult;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +31,7 @@ public class SearchController extends SimpleFormController {
 	}
 
 	public SearchController() {
-		setCommandClass(Search.class);
+		setCommandClass(SearchResult.class);
 		setCommandName("search");
 		setSuccessView("results");
 	}
@@ -48,8 +48,12 @@ public class SearchController extends SimpleFormController {
 	@Override
 	protected ModelAndView onSubmit(Object command, BindException errors) throws Exception {
 		ModelAndView mv = new ModelAndView(getSuccessView());
-		Search search = (Search) command;
-		Object list = searchService.getSearchByName(search.getName());
+		SearchResult search = (SearchResult) command;
+		Object list;
+		if(search.getOid() == null)
+			list = searchService.getSearchByName(search.getName());
+		else
+			list = searchService.getSearchByOid(search.getOid());
 
 		mv.addObject("searchList", list);
 		mv.addObject("searchName", search.getName());

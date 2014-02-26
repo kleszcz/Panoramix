@@ -2,7 +2,7 @@ package bean;
 
 import java.sql.Timestamp;
 
-public class Search {
+public class SearchResult {
 
 	private String name;
 	private String label;
@@ -11,10 +11,10 @@ public class Search {
 	private String filename;
 	private Timestamp added;
 
-	public Search() {
+	public SearchResult() {
 	}
 
-	public Search(Integer iid, Integer oid, String filename, String label, Integer votes, Timestamp added) {
+	public SearchResult(Integer iid, Integer oid, String filename, String label, Integer votes, Timestamp added) {
 		this.iid = iid;
 		this.oid = oid;
 		this.filename = filename;

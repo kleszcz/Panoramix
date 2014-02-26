@@ -1,6 +1,6 @@
 package dao;
 
-import bean.Search;
+import bean.SearchResult;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -14,7 +14,7 @@ public class SearchDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public List<Search> getByName(String name) {
+	public List<SearchResult> getByName(String name) {
 		String query = "select iid, oid, filename, label, votes, Images.added "
 				+ "from ( "
 				+ "select iid, oid, max(votes) as votes "
@@ -25,6 +25,18 @@ public class SearchDAO {
 				+ "group by iid,oid "
 				+ ") as Results join Objects using (oid) join Images using (iid) "
 				+ "order by label, votes desc";
-		return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(Search.class));
+		return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(SearchResult.class));
+	}
+
+	public List<SearchResult> getByOid(Integer oid) {
+		String query = "select iid, oid, filename, label, votes, Images.added "
+				+ "from ( "
+				+ "select iid, oid, max(votes) as votes "
+				+ "from Votes join POI using (pid) "
+				+ "where oid = " + oid
+				+ " group by iid,oid "
+				+ ") as Results join Objects using (oid) join Images using (iid) "
+				+ "order by label, votes desc";
+		return jdbcTemplate.query(query, new BeanPropertyRowMapper<>(SearchResult.class));
 	}
 }

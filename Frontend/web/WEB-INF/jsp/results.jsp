@@ -16,7 +16,7 @@
 			<table>
 				<c:forEach var="e" items="${searchList}" >
 					<tr>
-						<td>${e.label}</td>
+						<td><a href="search.do?name=${e.label}&amp;oid=${e.oid}">${e.label}</a></td>
 						<td>
 							<a href="image.do?iid=${e.iid}" ><img class="thumb" src="images/${e.filename}" /></a>
 						</td>

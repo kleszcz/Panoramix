@@ -116,7 +116,7 @@
 							<c:set var="votes" value="${ass.votes}" />
 							<% Integer v = (Integer) pageContext.getAttribute("votes");%>
 							<div class="assumption <%=(v > 0) ? "good" : (v < 0) ? "bad" : "controversial"%>">
-								${usersMap.get(ass.assumption_author)} (${ass.votes}) :: ${ass.label} - ${ass.description}
+								${usersMap.get(ass.assumption_author)} (${ass.votes}) :: <a href="search.do?name=${ass.label}&oid=${ass.oid}">${ass.label}</a> - ${ass.description}
 								<c:forEach var="comm" items="${commentsList}" >
 									<c:if test="${comm.aid == ass.aid}" >
 										<c:set var="vote" value="${comm.vote}" />

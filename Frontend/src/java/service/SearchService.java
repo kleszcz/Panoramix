@@ -1,6 +1,6 @@
 package service;
 
-import bean.Search;
+import bean.SearchResult;
 import dao.SearchDAO;
 import java.util.List;
 
@@ -12,11 +12,15 @@ public class SearchService {
 		return searchDAO;
 	}
 
-	public List<Search> getSearchByName(String name) {
+	public void setSearchDAO(SearchDAO searchDAO) {
+		this.searchDAO = searchDAO;
+	}
+
+	public List<SearchResult> getSearchByName(String name) {
 		return searchDAO.getByName(name);
 	}
 
-	public void setSearchDAO(SearchDAO searchDAO) {
-		this.searchDAO = searchDAO;
+	public List<SearchResult> getSearchByOid(Integer oid) {
+		return searchDAO.getByOid(oid);
 	}
 }
