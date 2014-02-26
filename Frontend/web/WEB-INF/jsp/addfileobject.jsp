@@ -17,7 +17,7 @@
 	</select></p>
 	<form method="post" enctype="multipart/form-data" action="upload.do" id="addimage">
 		<input type="file" name="image" />
-		<input type="text" name="description" />
+		<input type="text" name="description" placeholder="descripton" />
 		<input type="submit" value="Submit" />
 	</form>
 </div>
