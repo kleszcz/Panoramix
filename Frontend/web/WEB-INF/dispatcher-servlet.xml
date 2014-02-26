@@ -11,19 +11,21 @@
 		p:prefix="/WEB-INF/jsp/"
 		p:suffix=".jsp" />
 
-	<bean class="validators.LoginInfoValidator" id="loginInfoValidator"/>
+	<bean class="validators.LoginInfoValidator" id="loginInfoValidator" />
 
 	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
 	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
-	<bean class="controller.SearchController"   p:searchService-ref="searchService" />
-	<bean class="controller.ImageController"    p:imageService-ref="imageService" />
-	<bean class="controller.RegisterController" p:loginService-ref="loginService" p:validator-ref="loginInfoValidator" />
-	<bean class="controller.LoginController"    p:loginService-ref="loginService" p:validator-ref="loginInfoValidator" />
-	<bean class="controller.IndexController"    p:imageService-ref="imageService"/>
-	<bean class="controller.AddObjectController"   p:imageService-ref="imageService"/>
-	<bean class="controller.AddCommentController"  p:imageService-ref="imageService"/>
+	<bean class="controller.SearchController"         p:searchService-ref="searchService" />
+	<bean class="controller.ImageController"          p:imageService-ref="imageService" />
+	<bean class="controller.RegisterController"       p:loginService-ref="loginService" p:validator-ref="loginInfoValidator" />
+	<bean class="controller.LoginController"          p:loginService-ref="loginService" p:validator-ref="loginInfoValidator" />
+	<bean class="controller.IndexController"          p:imageService-ref="imageService" />
+	<bean class="controller.AddObjectController"      p:imageService-ref="imageService" />
+	<bean class="controller.AddCommentController"     p:imageService-ref="imageService" />
+	<bean class="controller.AddAssumptionController"  p:imageService-ref="imageService" />
+	<bean class="controller.AddPoiController"         p:imageService-ref="imageService" />
 
 
-<bean class="controller.UploadController"  p:imageService-ref="imageService"/>
+<bean class="controller.UploadController"  p:imageService-ref="imageService" />
 </beans>

@@ -111,6 +111,10 @@ public class ObjectsOnImage {
 
 	public void setDescription(String description) {
 		this.description = description;
+		/*try {
+			this.description = new String(description.getBytes("iso-8859-1"), "UTF-8");
+		} catch (Exception ex) {
+		}*/
 	}
 
 	public String getLabel() {
@@ -119,6 +123,10 @@ public class ObjectsOnImage {
 
 	public void setLabel(String label) {
 		this.label = label;
+		/*try {
+			this.label = new String(label.getBytes("iso-8859-1"), "UTF-8");
+		} catch (Exception ex) {
+		}*/
 	}
 
 }

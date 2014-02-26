@@ -20,15 +20,6 @@
 						<input type="submit" value="Add image" />
 					</form>
 				</div>
-				<div id="add_object">
-					<form method="post" action="addobject.do">
-						<input type="text" placeholder="label"       name="label" />
-						<input type="text" placeholder="lat"         name="lat" />
-						<input type="text" placeholder="long"        name="long" />
-						<input type="text" placeholder="description" name="description" />
-						<input type="submit" value="Add Object" />
-					</form>
-				</div>
 			</c:if>
 		</div>
 		<%@include file="header.jsp"%>

@@ -81,11 +81,12 @@ public class Search {
 
 	public void setName(String name) {
 		//FIXME: WTFF
+		this.name = name;
+		/*
 		try {
 			this.name = new String(name.getBytes("iso-8859-1"), "UTF-8");
-		} catch (UnsupportedEncodingException ex) {
-			Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		} catch (Exception ex) {
+		}*/
 	}
 
 }

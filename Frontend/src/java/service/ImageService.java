@@ -1,11 +1,6 @@
 package service;
 
-import bean.Comment;
-import bean.ImageInfo;
-import bean.ImageUpload;
-import bean.ObjectInfo;
-import bean.ObjectsOnImage;
-import bean.UserInfo;
+import bean.*;
 import dao.CommentsDAO;
 import dao.ImagesDAO;
 import dao.ObjectsDAO;
@@ -76,8 +71,16 @@ public class ImageService {
 		return usersDAO.getByIid(iid);
 	}
 
-	public void addObjectInfo(ObjectInfo object) {
+	public void addObject(ObjectInfo object) {
 		objectsDAO.addObject(object);
+	}
+
+	public void addAssumption(AssumptionInfo assumption) {
+		imagesDAO.addAssumption(assumption);
+	}
+
+	public void addPoi(PoiInfo poi) {
+		imagesDAO.addPoi(poi);
 	}
 
 	public void addComment(Comment comment) {

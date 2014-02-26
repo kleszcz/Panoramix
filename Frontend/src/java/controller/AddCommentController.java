@@ -31,17 +31,13 @@ public class AddCommentController extends SimpleFormController {
 	@Override
 	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
 		Comment comment = (Comment) command;
-		ModelAndView mv = null;
 		Integer uid;
 		HttpSession session = request.getSession(false);
-		if(session != null && (uid = (Integer) session.getAttribute("uid")) != null) {
+		if (session != null && (uid = (Integer) session.getAttribute("uid")) != null) {
 			comment.setAuthor(uid);
 			imageService.addComment(comment);
-			response.sendRedirect(request.getHeader("referer"));
-		} else {
-			response.sendRedirect(request.getHeader("referer"));
 		}
-
-		return mv;
+		response.sendRedirect(request.getHeader("referer"));
+		return null;
 	}
 }

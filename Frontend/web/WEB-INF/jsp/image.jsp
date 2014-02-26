@@ -28,7 +28,7 @@
 				if (e.button === 0) {
 					x = e.offsetX / $("#img").width();
 					y = e.offsetY / $("#img").height();
-					s = $('<img class="marker" id="newmarker" style="top: ' + y*100 + '%; left: ' + x*100 + '%;"/>');
+					s = $('<img class="marker" id="newmarker" style="top: ' + y * 100 + '%; left: ' + x * 100 + '%;"/>');
 					s.id = 'newmarker';
 					$("#img").append(s);
 					$("#poiform").show();
@@ -78,6 +78,15 @@
 							<input type="submit" value="add POI"/>
 						</form>
 					</div>
+					<div id="add_object">
+						<form method="post" action="addobject.do">
+							<input type="text" placeholder="label"       name="label" />
+							<input type="text" placeholder="lat"         name="lat" />
+							<input type="text" placeholder="long"        name="long" />
+							<input type="text" placeholder="description" name="description" />
+							<input type="submit" value="Add Object" />
+						</form>
+					</div>
 				</c:if>
 			</div>
 			<div id="commentsContainer">
@@ -91,7 +100,7 @@
 							<p>POI added by ${usersMap.get(ass.point_author)}.</p>
 							<c:if test="${uname != null}">
 								<div id="assform" style="display: inline;">
-									<form method="post" action="addassumption.do" style="display: inline;">
+									<form method="post" action="addassumption.do" id="assform_${ass.aid}" style="display: inline;">
 										<input type="hidden" name="pid" value="${ass.pid}" />
 										<input type="submit" value="add assumption:"/>
 									</form>
@@ -107,7 +116,7 @@
 							<c:set var="votes" value="${ass.votes}" />
 							<% Integer v = (Integer) pageContext.getAttribute("votes");%>
 							<div class="assumption <%=(v > 0) ? "good" : (v < 0) ? "bad" : "controversial"%>">
-								${ass.votes} :: ${ass.label} - ${ass.description} by ${usersMap.get(ass.assumption_author)}
+								${usersMap.get(ass.assumption_author)} (${ass.votes}) :: ${ass.label} - ${ass.description}
 								<c:forEach var="comm" items="${commentsList}" >
 									<c:if test="${comm.aid == ass.aid}" >
 										<c:set var="vote" value="${comm.vote}" />

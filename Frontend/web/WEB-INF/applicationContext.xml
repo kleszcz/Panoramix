@@ -27,7 +27,7 @@
 		p:imagesDAO-ref="imagesDAO"
 		p:objectsOnImageDAO-ref="objectsOnImageDAO"
 		p:commentsDAO-ref="commentsDAO"
-		p:usersDAO-ref="usersDAO"/>
+		p:usersDAO-ref="usersDAO" />
 	<bean name="searchService" class="service.SearchService"  p:searchDAO-ref="searchDAO" />
-	<bean name="loginService"   class="service.LoginService"   p:userDAO-ref="usersDAO"/>
+	<bean name="loginService"  class="service.LoginService"   p:userDAO-ref="usersDAO" />
 </beans>
