@@ -37,9 +37,6 @@ public class Comment {
 
 	public void setText(String text) {
 		this.text = text;
-		/*try {
-			this.text = new String(text.getBytes("iso-8859-1"), "UTF-8");
-		} catch (Exception ex) {}*/
 	}
 
 	public Integer getAid() {
