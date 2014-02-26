@@ -1,13 +1,14 @@
 package bean;
 
 public class LoginInfo {
+
 	private Integer uid;
-	private String  uname;
-	private String  password;
+	private String uname;
+	private String password;
 
 	public LoginInfo(Integer uid, String uname, String password) {
-		this.uid      = uid;
-		this.uname    = uname;
+		this.uid = uid;
+		this.uname = uname;
 		this.password = password;
 	}
 
@@ -37,5 +38,9 @@ public class LoginInfo {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String toString() {
+		return uname;
 	}
 }

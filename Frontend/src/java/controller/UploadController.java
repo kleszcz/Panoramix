@@ -2,6 +2,7 @@ package controller;
 
 import bean.ImageUpload;
 import java.util.UUID;
+import java.util.logging.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.validation.BindException;
@@ -24,7 +25,7 @@ public class UploadController extends SimpleFormController {
 
 	public UploadController() {
 		setCommandClass(ImageUpload.class);
-		setCommandName("upload");
+		setCommandName("imageUpload");
 		setSuccessView("image");
 		setFormView("upload");
 	}
@@ -32,15 +33,19 @@ public class UploadController extends SimpleFormController {
 	@Override
 	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response,
 			Object command, BindException errors) throws Exception {
+		ImageUpload iu = (ImageUpload) command;
+		Logger.getLogger("debug").severe((new Boolean(iu.getImage() == null)).toString());
+		Logger.getLogger("debug").severe(errors.getMessage().toString());
+		Logger.getLogger("debug").severe("" + iu.getImage() + iu.getDescription() + iu.getName() + iu.getTakenFrom());
 		ModelAndView mv;
 		//try {
-		mv = new ModelAndView(getSuccessView());
-		int iid = imageService.saveImage((ImageUpload) command);
-		imageService.addImageInfo(mv, iid);
+		//mv = new ModelAndView(getSuccessView());
+		//int iid = imageService.saveImage((ImageUpload) command);
+		//imageService.addImageInfo(mv, iid);
 		/*} catch (Exception e) {
 		 mv = new ModelAndView(getFormView());
 		 }*/
 
-		return mv;
+		return null;
 	}
 }

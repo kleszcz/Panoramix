@@ -26,6 +26,5 @@
 	<bean class="controller.AddAssumptionController"  p:imageService-ref="imageService" />
 	<bean class="controller.AddPoiController"         p:imageService-ref="imageService" />
 
-
-<bean class="controller.UploadController"  p:imageService-ref="imageService" />
+	<bean class="controller.UploadController"  p:imageService-ref="imageService" />
 </beans>
