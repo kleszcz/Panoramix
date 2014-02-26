@@ -1,10 +1,11 @@
 package controller;
 
-import bean.ImageUpload;
+import bean.ImageInfo;
 import java.util.UUID;
 import java.util.logging.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.validation.BindException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,24 +25,27 @@ public class UploadController extends SimpleFormController {
 	}
 
 	public UploadController() {
-		setCommandClass(ImageUpload.class);
+		setCommandClass(ImageInfo.class);
 		setCommandName("imageUpload");
-		setSuccessView("image");
+		setSuccessView("error");
 		setFormView("uploader");
 	}
 
 	@Override
-	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response,
+	protected ModelAndView onSubmit(
+			HttpServletRequest request, HttpServletResponse response,
 			Object command, BindException errors) throws Exception {
-		ImageUpload iu = (ImageUpload) command;
-		Logger.getLogger("debug").severe((new Boolean(iu.getImage() == null)).toString());
-		Logger.getLogger("debug").severe(errors.getMessage().toString());
-		Logger.getLogger("debug").severe("" + iu.getImage() + iu.getDescription() + iu.getName() + iu.getTakenFrom());
-		ModelAndView mv;
-
-		mv = new ModelAndView(getSuccessView());
-		int iid = imageService.saveImage((ImageUpload) command, request.getServletContext());
-		imageService.addImageInfo(mv, iid);
+		ImageInfo image = (ImageInfo) command;
+		Integer uid;
+		HttpSession session = request.getSession(false);
+		if (session != null && (uid = (Integer) session.getAttribute("uid")) != null) {
+			image.setUid(uid);
+			int iid = imageService.saveImage((ImageInfo) command, request.getServletContext());
+			response.sendRedirect(request.getContextPath() + "/image.do?iid=" + iid);
+		} else {
+			ModelAndView mv = new ModelAndView(getSuccessView());
+			mv.addObject("message", "Failure.");
+		}
 
 		return null;
 	}

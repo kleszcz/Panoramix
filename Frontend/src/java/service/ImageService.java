@@ -114,11 +114,13 @@ public class ImageService {
 		return objectsDAO.getAllObjects();
 	}
 
-	public int saveImage(ImageUpload iu, ServletContext sc) throws Exception {
-		MultipartFile image = iu.getImage();
+	public int saveImage(ImageInfo image, ServletContext sc) throws Exception {
 		String filename = UUID.randomUUID().toString();
 		String path = sc.getRealPath("/images") + "/" + filename;
-		image.transferTo(new File(path));
-		return 5;
+
+		image.getImage().transferTo(new File(path));
+		image.setFilename(filename);
+
+		return imagesDAO.addImage(image);
 	}
 }

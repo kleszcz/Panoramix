@@ -1,9 +1,11 @@
 package bean;
 
 import java.sql.Timestamp;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ImageInfo {
 
+	private Integer oid;
 	private Integer iid;
 	private Integer uid;
 	private String filename;
@@ -11,6 +13,7 @@ public class ImageInfo {
 	private Timestamp added;
 	private String taken_from_label;
 	private String uname;
+	MultipartFile image;
 
 	public ImageInfo() {
 	}
@@ -31,6 +34,22 @@ public class ImageInfo {
 		this.description = description;
 		this.added = added;
 		this.taken_from_label = taken_from_label;
+	}
+
+	public Integer getOid() {
+		return oid;
+	}
+
+	public void setOid(Integer oid) {
+		this.oid = oid;
+	}
+
+	public MultipartFile getImage() {
+		return image;
+	}
+
+	public void setImage(MultipartFile image) {
+		this.image = image;
 	}
 
 	public Integer getIid() {

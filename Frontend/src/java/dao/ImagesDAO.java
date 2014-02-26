@@ -25,14 +25,15 @@ public class ImagesDAO {
 		return jdbcTemplate.queryForObject(query, new Object[]{iid}, new BeanPropertyRowMapper<>(ImageInfo.class));
 	}
 
-	public int addImage(Integer iid) {
-		String query = "select "
-				+ "iid, Images.uid as uid, uname, filename, Images.description, added, "
-				+ "label as taken_from "
-				+ "from  Images join Users using (uid) left join Objects on (taken_from = oid) "
-				+ "where iid = ?";
-		//return jdbcTemplate.queryForInt(); //FIXME
-		return 5;
+	public int addImage(ImageInfo image) {
+		String query = "insert into Images (uid, filename, description, taken_from, added) values (?, ?, ?, ?, CURRENT_TIMESTAMP)";
+		jdbcTemplate.update(query, new Object[]{
+			image.getUid(),
+			image.getFilename(),
+			image.getDescription(),
+			image.getOid()
+		});
+		return jdbcTemplate.queryForInt("select iid from Images where filename = ?", image.getFilename());
 	}
 
 	public void addAssumption(AssumptionInfo assumption) {
