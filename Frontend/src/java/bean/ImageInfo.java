@@ -11,7 +11,7 @@ public class ImageInfo {
 	private String filename;
 	private String description;
 	private Timestamp added;
-	private String taken_from_label;
+	private String taken_from;
 	private String uname;
 	MultipartFile image;
 
@@ -25,7 +25,7 @@ public class ImageInfo {
 			String filename,
 			String description,
 			Timestamp added,
-			String taken_from_label
+			String taken_from
 	) {
 		this.iid = iid;
 		this.uid = uid;
@@ -33,7 +33,7 @@ public class ImageInfo {
 		this.filename = filename;
 		this.description = description;
 		this.added = added;
-		this.taken_from_label = taken_from_label;
+		this.taken_from = taken_from;
 	}
 
 	public Integer getOid() {
@@ -92,12 +92,12 @@ public class ImageInfo {
 		this.added = added;
 	}
 
-	public String getTaken_from_label() {
-		return taken_from_label;
+	public String getTaken_from() {
+		return taken_from;
 	}
 
-	public void setTaken_from_label(String taken_from_label) {
-		this.taken_from_label = taken_from_label;
+	public void setTaken_from(String taken_from_label) {
+		this.taken_from = taken_from_label;
 	}
 
 	public String getUname() {

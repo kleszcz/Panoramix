@@ -19,7 +19,7 @@ public class ImagesDAO {
 	public ImageInfo getByIid(Integer iid) {
 		String query = "select "
 				+ "iid, Images.uid as uid, uname, filename, Images.description, added, "
-				+ "label as taken_from "
+				+ "taken_from as oid, label as taken_from "
 				+ "from  Images join Users using (uid) left join Objects on (taken_from = oid) "
 				+ "where iid = ?";
 		return jdbcTemplate.queryForObject(query, new Object[]{iid}, new BeanPropertyRowMapper<>(ImageInfo.class));

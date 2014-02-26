@@ -68,7 +68,7 @@
 					<img alt="${image.filename}" src="images/${image.filename}" id="picture" />
 				</div>
 				<br/>
-				Photo by ${image.uname}<c:if test="${image.taken_from_label != null}">, taken from ${image.taken_from_label}</c:if>
+				Photo by ${image.uname}<c:if test="${image.taken_from != null}">, taken from <a href="search.do?name=${image.taken_from}&oid=${image.oid}">${image.taken_from}</a></c:if>
 				<c:if test="${uname != null}">
 					<div id="poiform" style="display: none;">
 						<form method="post" action="addpoi.do">
@@ -78,15 +78,7 @@
 							<input type="submit" value="add POI"/>
 						</form>
 					</div>
-					<div id="add_object">
-						<form method="post" action="addobject.do">
-							<input type="text" placeholder="label"       name="label" />
-							<input type="text" placeholder="lat"         name="lat" />
-							<input type="text" placeholder="long"        name="long" />
-							<input type="text" placeholder="description" name="description" />
-							<input type="submit" value="Add Object" />
-						</form>
-					</div>
+					<%@include file="addfileobject.jsp" %>
 				</c:if>
 			</div>
 			<div id="commentsContainer">

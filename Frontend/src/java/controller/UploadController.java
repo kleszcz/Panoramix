@@ -28,7 +28,7 @@ public class UploadController extends SimpleFormController {
 		setCommandClass(ImageInfo.class);
 		setCommandName("imageUpload");
 		setSuccessView("error");
-		setFormView("uploader");
+		setFormView("index");
 	}
 
 	@Override
@@ -38,13 +38,14 @@ public class UploadController extends SimpleFormController {
 		ImageInfo image = (ImageInfo) command;
 		Integer uid;
 		HttpSession session = request.getSession(false);
-		if (session != null && (uid = (Integer) session.getAttribute("uid")) != null) {
+		if (!image.getImage().isEmpty() && session != null && (uid = (Integer) session.getAttribute("uid")) != null) {
 			image.setUid(uid);
 			int iid = imageService.saveImage((ImageInfo) command, request.getServletContext());
 			response.sendRedirect(request.getContextPath() + "/image.do?iid=" + iid);
 		} else {
 			ModelAndView mv = new ModelAndView(getSuccessView());
 			mv.addObject("message", "Failure.");
+			return mv;
 		}
 
 		return null;
