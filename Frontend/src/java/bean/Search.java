@@ -1,9 +1,6 @@
 package bean;
 
-import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Search {
 
