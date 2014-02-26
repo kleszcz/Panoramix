@@ -100,11 +100,11 @@
 							<p>POI added by ${usersMap.get(ass.point_author)}.</p>
 							<c:if test="${uname != null}">
 								<div id="assform" style="display: inline;">
-									<form method="post" action="addassumption.do" id="assform_${ass.aid}" style="display: inline;">
+									<form method="post" action="addassumption.do" id="assform_${ass.pid}" style="display: inline;">
 										<input type="hidden" name="pid" value="${ass.pid}" />
 										<input type="submit" value="add assumption:"/>
 									</form>
-									<select name="oid" form="assform_${ass.aid}" style="display: inline;">
+									<select name="oid" form="assform_${ass.pid}" style="display: inline;">
 										<c:forEach var="object" items="${objects}" >
 											<option value="${object.oid}">${object.label}</option>
 										</c:forEach>
