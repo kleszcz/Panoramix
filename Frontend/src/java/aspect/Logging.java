@@ -2,14 +2,16 @@ package aspect;
 
 import org.aspectj.lang.*;
 import org.aspectj.lang.annotation.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Aspect
 public class Logging {
 	@Pointcut("execution(* service.LoginService.*(..))")
-	private void allServices() {}
+	private void loginService() {}
 
-	@Before("allServices()")
+	@Before("loginService()")
 	public void log(JoinPoint jp) throws Exception {
-		System.out.println(jp.getSignature());
+		Logger.getLogger("LoginService").severe(jp.toString());
 	}
 }

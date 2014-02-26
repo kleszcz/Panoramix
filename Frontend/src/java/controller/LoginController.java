@@ -23,8 +23,7 @@ public class LoginController extends SimpleFormController {
 	public LoginController() {
 		setCommandClass(LoginInfo.class);
 		setCommandName("login");
-		setSuccessView("index");
-		setFormView("index");
+		setSuccessView("error");
 	}
 
 	@Override
@@ -35,14 +34,15 @@ public class LoginController extends SimpleFormController {
 			if (loginService.authenticate(user)) {
 				request.getSession(true).setAttribute("uid", user.getUid());
 				request.getSession(true).setAttribute("uname", user.getUname());
-				mv = new ModelAndView(getSuccessView());
+				response.sendRedirect(request.getHeader("referer"));
+				return null;
 			} else {
-				//FIXME: validator?
-				mv = new ModelAndView(getFormView());
+				mv = new ModelAndView(getSuccessView());
+				mv.addObject("message", "Wrong password.");
 			}
 		} catch (Exception e) {
-			//FIXME: validator?
-			mv = new ModelAndView(getFormView());
+			mv = new ModelAndView(getSuccessView());
+			mv.addObject("message", "Wrong username.");
 		}
 		return mv;
 	}
